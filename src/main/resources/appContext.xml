@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+
+            http://www.directwebremoting.org/schema/spring-dwr
+            http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+            ">
+
+    <!-- ............................ -->
+    <!-- Configuracion del LOGGER  _  -->
+    <!-- ............................ -->
+
+    <bean id="log4jInitialization"
+          class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass"
+                  value="org.springframework.util.Log4jConfigurer" />
+        <property name="targetMethod" value="initLogging" />
+        <property name="arguments">
+            <list>
+                <value>classpath:log4jClcSms.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- .......................... -->
+    <!-- Configuracion de hibernate -->
+    <!-- .......................... -->
+
+    <bean id="factory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost/bi</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.username">bi</prop>
+                <prop key="hibernate.connection.password">bi</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+                <prop key="hibernate.connection.autocommit">true</prop>
+
+                <prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</prop>
+
+                <prop key="hibernate.c3p0.min_size">2</prop>
+                <prop key="hibernate.c3p0.max_size">10</prop>
+                <prop key="hibernate.c3p0.timeout">1800</prop>
+                <prop key="hibernate.c3p0.max_statements">100</prop>
+
+            </props>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>co.com.elramireza.bi.model.I1</value>
+                <value>co.com.elramireza.bi.model.Usuario</value>
+                <value>co.com.elramireza.bi.model.I2</value>
+                <value>co.com.elramireza.bi.model.O4Calculado</value>
+                <value>co.com.elramireza.bi.model.I6</value>
+                <value>co.com.elramireza.bi.model.I7</value>
+                <value>co.com.elramireza.bi.model.I3Calculado</value>
+                <value>co.com.elramireza.bi.model.I4</value>
+                <value>co.com.elramireza.bi.model.I8Calculado</value>
+                <value>co.com.elramireza.bi.model.I8</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="factory"/>
+    </bean>
+
+    <!-- ..................................... -->
+    <!-- Configuracion del Contexto WEB   __-  -->
+    <!-- ..................................... -->
+
+    <bean class="org.springframework.web.context.support.ServletContextAttributeExporter">
+        <property name="attributes">
+            <map>
+<!-- inyecta los siguientes beans en el servlet context para que los servlets puedan acceder a ellos -->
+                <entry key="biManager" value-ref="biDAO" />
+            </map>
+        </property>
+    </bean>
+
+    <!-- ............................ -->
+    <!-- Configuracion del DWR   __-  -->
+    <!-- ............................ -->
+
+    <dwr:controller id="dwrController" debug="true">
+        <dwr:config-param name="activeReverseAjaxEnabled" value="true"/>
+    </dwr:controller>
+
+    <dwr:configuration>
+        <dwr:convert class="java.lang.Exception" type="exception"/>
+        <dwr:convert class="java.lang.StackTraceElement" type="bean"/>
+        <dwr:convert class="java.util.Collection" type="collection"/>
+        <dwr:convert class="java.util.Map" type="map"/>
+    </dwr:configuration>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/engine.js">dwrController</prop>
+                <prop key="/util.js">dwrController</prop>
+                <prop key="/interface/**">dwrController</prop>
+                <prop key="/call/**">dwrController</prop>
+            </props>
+        </property>
+    </bean>
+
+    
+    <!-- .................................................. -->
+    <!-- Definicion de los DAO a utilizar por la aplicacion -->
+    <!-- .................................................. -->
+
+
+    <bean id="biDAO" class="co.com.elramireza.bi.dao.BiDAO">
+        <dwr:remote javascript="biRemoto">
+
+            <dwr:include method="test"/>
+            <dwr:include method="getUsuario"/>
+            <dwr:include method="getI2"/>
+            <dwr:include method="getYearsI2"/>
+            <dwr:include method="getTypeEstudentI2"/>
+            <dwr:include method="getFacultyI2"/>
+            <dwr:include method="getInstitutesO4"/>
+            <dwr:include method="getO4CalculadoValues"/>
+            <dwr:include method="getI6Values"/>
+            <dwr:include method="getI7Values"/>
+            <dwr:include method="getI3Calculados"/>
+            <dwr:include method="getI4Values"/>
+            <dwr:include method="getI8Calculado"/>
+
+            
+            <!--LOS QUE NO VAN-->
+
+
+            <!-- CONVERTS-->
+            <dwr:convert class="co.com.elramireza.bi.model.I1" type="bean">
+            </dwr:convert>
+            <dwr:convert class="co.com.elramireza.bi.model.I2" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.O4Calculado" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.I3Calculado" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.I6" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.I7" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.I4" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.I8Calculado" type="bean"/>
+
+
+            <dwr:convert class="co.com.elramireza.bi.model.Usuario" type="bean">
+                <dwr:exclude method="password"/>
+            </dwr:convert>
+        </dwr:remote>
+        <property name="sessionFactory" ref="factory"/>
+    </bean>
+
+
+
+
+
+</beans>
