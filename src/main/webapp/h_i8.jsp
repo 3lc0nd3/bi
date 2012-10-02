@@ -28,6 +28,7 @@
             </select>
         </div>
         <div class="three columns">
+            
             <a onclick="searchi8();" class="button">Search</a>
         </div>
     </div> <%--ROW--%>
