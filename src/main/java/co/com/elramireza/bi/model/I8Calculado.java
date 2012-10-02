@@ -238,7 +238,7 @@ public class I8Calculado {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = mCurrentLiabilities != +0.0d ? Double.doubleToLongBits(mCurrentLiabilities) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-//        Hasta aca voy
+//        Hasta aca voy  
         return result;
     }
 }
