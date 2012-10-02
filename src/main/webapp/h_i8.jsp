@@ -111,7 +111,4 @@
         });
     }
 </script>
-
-
-
 <jsp:include page="c_footer.jsp"/>
