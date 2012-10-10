@@ -77,7 +77,7 @@
                     jQuery('#chart1').empty();
                     jQuery('#chart1').jqplot(lista, {
                         animate: true,
-                        title:' Bench Revenue Vs Academic Staff Cost',
+                        title:' Bench Revenue Vs Academic Staff Cost ' +year,
                         series:[
                             {
                                 label: "Total Revenue"

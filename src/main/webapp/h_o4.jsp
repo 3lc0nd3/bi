@@ -83,7 +83,7 @@
                     jQuery('#chart1').empty();
                     jQuery('#chart1').jqplot([lista], {
                         animate: true,
-                        title:'Bench Operating Marging',
+                        title:'Bench Operating Marging ' + year,
                         seriesDefaults:{
                             pointLabels: {
                                 show:true,

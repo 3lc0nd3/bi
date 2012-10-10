@@ -81,7 +81,7 @@
                     jQuery('#chart1').empty();
                     jQuery('#chart1').jqplot(lista, {
                         animate: true,
-                        title:' Bench Revenue Vs Staff ',
+                        title:' Bench Revenue Vs Staff '+ year,
                         series:[
                             {
                                 label: "Total Revenue"

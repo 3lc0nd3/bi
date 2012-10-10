@@ -70,7 +70,7 @@
                 dwr.util.setValue("formula", "(Net Operating Result / Total Revenue) * 100");
                 dwr.util.setValue("l1", "Net Operating Result");
                 dwr.util.setValue("v1", data.CNetOperatingResult);
-                dwr.util.setValue("l2", "Net Operating Result");
+                dwr.util.setValue("l2", "Total Revenue");
                 dwr.util.setValue("v2", data.DTotalRevenue);
                 dwr.util.setValue("valorLabel", "Operating Margin");
             } else
