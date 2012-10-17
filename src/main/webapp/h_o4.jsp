@@ -55,8 +55,22 @@
 </div>
 <div class="row">
 
-        <div id="chart1" style="height:500px; width:85%;"></div>
+    <div id="chart1" style="height:500px; width:85%;"></div>
+    <br>
+    <h4>Data</h4>
+    <br>
+    <table width="80%">
+        <thead>
+            <th>Institution</th>
+            <th>Total Revenue</th>
+            <th>Net Operating Result</th>
+            <th>Operating Marging</th>
+        </thead>
+        <tbody id="o4tBody"></tbody>
+    </table>
+    
 </div>
+
 
 <script type="text/javascript">
 
@@ -67,7 +81,20 @@
             };
         })(jQuery);
     });
+
+
+
+    var cellFuncs = [
+            function(data) { return data.institution;   },
+            function(data) { return data.totalRevenue; },
+            function(data) { return data.netOperatingResult; },
+            function(data) { return Math.round(data.operatingMarging * 10000)/100 + '%'; }
+    ];
+
+
+
     function viewO4(){
+        dwr.util.removeAllRows("o4tBody");
         var year = dwr.util.getValue("year");
         var insti = dwr.util.getValue("insti");
         if(insti != ''){
@@ -75,6 +102,7 @@
             var tk = [];
             var lista = [[]];
             biRemoto.getO4CalculadoValues(insti, year, function(data){
+                dwr.util.addRows("o4tBody", data, cellFuncs);
                 if (data != null) {
                     for (var i = 0; i < data.length; i++) {
                         var o4 = data[i];

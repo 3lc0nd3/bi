@@ -52,10 +52,27 @@
 <div class="row">
 
         <div id="chart1" style="height:500px; width:85%;"></div>
+    <br>
+    <table width="80%">
+        <thead>
+            <th>Institution</th>
+            <th>Total Revenue</th>
+            <th>Total Academic Staff Cost</th>
+        </thead>
+        <tbody id="i7tBody"></tbody>
+    </table>
 </div>
 
 <script type="text/javascript">
+
+    var cellFuncs = [
+            function(data) { return data.institution;   },
+            function(data) { return data.totalRevenue; },
+            function(data) { return Math.round(data.totalAcademicStaffCosts *100)/100; }
+    ];
+
     function viewI7(){
+        dwr.util.removeAllRows("i7tBody");
         var year = dwr.util.getValue("year");
         var insti = dwr.util.getValue("insti");
         if(insti != ''){
@@ -63,6 +80,7 @@
             var tk = [];
             var lista = [[[],[]],[[],[]]];
             biRemoto.getI7Values(insti, year, function(data){
+                dwr.util.addRows("i7tBody", data, cellFuncs);
                 if (data != null) {
                     for (var i = 0; i < data.length; i++) {
                         var i7 = data[i];
