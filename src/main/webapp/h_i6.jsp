@@ -84,7 +84,7 @@
             var tk = [];
             var lista = [[[],[]],[[],[]]];
             biRemoto.getI6Values(insti, year, function(data){
-                dwr.util.addRows("i6tBody", data, cellFuncs);
+                dwr.util.addRows("i6tBody", data, cellFuncs); zn
                 if (data != null) {
                     for (var i = 0; i < data.length; i++) {
                         var i6 = data[i];
