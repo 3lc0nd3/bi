@@ -14,6 +14,10 @@ import javax.persistence.*;
 @Table(catalog = "bi", name = "i4")
 public class I4 {
     private int id;
+    private String capitalExpenditure;
+    private int _2011;
+    private int _2012;
+    private int _2013;
 
     @Id
     @Column(name = "id")
@@ -25,7 +29,6 @@ public class I4 {
         this.id = id;
     }
 
-    private String capitalExpenditure;
 
     @Basic
     @Column(name = "capital_expenditure")
@@ -37,10 +40,9 @@ public class I4 {
         this.capitalExpenditure = capitalExpenditure;
     }
 
-    private int _2011;
 
     @Basic
-    @Column(name = "2011")
+    @Column(name = "a2011")
     public int get_2011() {
         return _2011;
     }
@@ -49,10 +51,9 @@ public class I4 {
         this._2011 = _2011;
     }
 
-    private int _2012;
 
     @Basic
-    @Column(name = "2012")
+    @Column(name = "a2012")
     public int get_2012() {
         return _2012;
     }
@@ -61,10 +62,9 @@ public class I4 {
         this._2012 = _2012;
     }
 
-    private int _2013;
 
     @Basic
-    @Column(name = "2013")
+    @Column(name = "a2013")
     public int get_2013() {
         return _2013;
     }
