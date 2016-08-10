@@ -1,5 +1,18 @@
 package co.com.elramireza.bi.dao;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.directwebremoting.WebContext;
+import org.directwebremoting.WebContextFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.dao.support.DataAccessUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -7,6 +20,9 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
 import co.com.elramireza.bi.model.*;
 
+import javax.servlet.ServletContext;
+import java.io.*;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -135,5 +151,76 @@ public class BiDAO extends HibernateDaoSupport{
 
     public I8Calculado getI8Calculado(int year){
         return (I8Calculado) DataAccessUtils.uniqueResult(getHibernateTemplate().find("from I8Calculado where AYear = ?", year));
+    }
+
+    public int subeArchivoExcel(byte[] archivoExcel){
+        try {
+            WebContext wctx = WebContextFactory.get();
+            ServletContext context = wctx.getServletContext();
+            String path = context.getRealPath("/files");
+
+            String fileName = "f-"+System.currentTimeMillis()+".xlsx";
+            String filePath = path + "/" + fileName;
+
+            FileOutputStream outputStream = new FileOutputStream(filePath);
+            outputStream.write(archivoExcel);
+            outputStream.close();
+
+
+            Workbook wb = null;
+            try {
+                wb = WorkbookFactory.create(new File(filePath));
+                logger.info("wb = " + wb);
+                int pages = wb.getNumberOfSheets();
+                logger.info("pages = " + pages);
+                Sheet mySheet = wb.getSheetAt(0);
+                logger.info("mySheet = " + mySheet);
+                Iterator<Row> rowIter = mySheet.rowIterator();
+                logger.info(mySheet.getRow(1).getCell(0));
+
+                XSSFRow row;
+                XSSFCell cell;
+
+                Iterator iterator = mySheet.rowIterator();
+
+                while (iterator.hasNext()) {
+                    row=(XSSFRow) iterator.next();
+                    Iterator cellIterator = row.cellIterator();
+
+
+                    while (cellIterator.hasNext()) {
+                        cell = (XSSFCell) cellIterator.next();
+
+                        switch (cell.getCellType()) {
+                            case Cell.CELL_TYPE_STRING:
+                                System.out.print(cell.getStringCellValue());
+                                break;
+                            case Cell.CELL_TYPE_BOOLEAN:
+                                System.out.print(cell.getBooleanCellValue());
+                                break;
+                            case Cell.CELL_TYPE_NUMERIC:
+//                                System.out.print(cell.getNumericCellValue());
+                                System.out.print(cell);
+                                break;
+                        }
+                        System.out.print(" - ");
+                    }
+                    System.out.println();
+                }
+
+            } catch (InvalidFormatException e) {
+                e.printStackTrace();
+            }
+
+
+//            fileIn.close();
+//            getHibernateTemplate().update(tipoPremio);
+            return 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.debug(e.getMessage());
+            return 0;
+        }
+
     }
 }

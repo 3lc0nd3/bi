@@ -39,6 +39,11 @@
                 <br>
             </div>
             <div class="six columns">
+                <input type="file" class="button required"  name="fileFoto" id="fileFoto">
+                <br>
+                <input type="button" class="button" id="bgFoto" onclick="subeArchivo();" value="Subir archivo">
+                <br>
+                <br>
                 <br><br><br><br><br><br><br><br><br>
                 <a onclick="viewI3();" class="button">View</a>
             </div>
@@ -127,6 +132,26 @@
     }
 
     viewI3();
+
+    function subeArchivo() {
+//    alrt("Hola 2");
+//        botonEnProceso("bgFoto");
+        var o = jQuery("#fileFoto").val();
+        if (o == '') {
+            alrtError("Por favor seleccione un archivo <%--<%=tipoPremio.getId()%>--%>");
+            botonOperativo();
+        } else
+            biRemoto.subeArchivoExcel(dwr.util.getValue('fileFoto'),function(data){
+                if(data!=0){
+                    alrt("Bien");
+                    botonOperativo();
+                } else {
+                    botonOperativo();
+                    alrtError("Problemas");
+                }
+            });
+    }
+
 </script>
 
 <jsp:include page="c_footer.jsp"/>

@@ -14,6 +14,10 @@ import javax.persistence.*;
 @Table(catalog = "bi", name = "i3_calculado")
 public class I3Calculado {
     private int id;
+    private int year;
+    private double totalRevenue;
+    private double totalExpenses;
+    private double netOperatingResult;
 
     @Id
     @Column(name = "id")
@@ -25,7 +29,6 @@ public class I3Calculado {
         this.id = id;
     }
 
-    private int year;
 
     @Basic
     @Column(name = "year")
@@ -37,7 +40,6 @@ public class I3Calculado {
         this.year = year;
     }
 
-    private double totalRevenue;
 
     @Basic
     @Column(name = "total_revenue")
@@ -49,7 +51,6 @@ public class I3Calculado {
         this.totalRevenue = totalRevenue;
     }
 
-    private double totalExpenses;
 
     @Basic
     @Column(name = "total_expenses")
@@ -61,7 +62,6 @@ public class I3Calculado {
         this.totalExpenses = totalExpenses;
     }
 
-    private double netOperatingResult;
 
     @Basic
     @Column(name = "net_operating_result")

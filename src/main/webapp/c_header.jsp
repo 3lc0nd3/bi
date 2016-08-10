@@ -41,9 +41,49 @@
     <script type='text/javascript' src='dwr/util.js'></script>
 
     <script type='text/javascript' src='dwr/interface/biRemoto.js'></script>
+
+    <link href="javascripts/jquery-notice/jquery.notice.css" rel="stylesheet">
+    <script src="javascripts/jquery-notice/jquery.notice.js"></script>
+
     <%--<script src="javascripts/jquery.js"></script>--%>
     <script type="text/javascript">
-//        jQuery = jQuery.noConflict();
+
+        function alrt(msg){
+            jQuery.noticeAdd({
+                text: msg,
+                stay: false,
+                type: 'notice-success'
+            });
+        }
+        function alrtError(msg){
+            jQuery.noticeAdd({
+                text: msg,
+                stay: true,
+                type: 'notice-error'
+            });
+        }
+
+        /**
+         * hace que el boton se ponga en modo espera
+         * @param idBoton
+         */
+        function botonEnProceso(idBoton){
+            var bTmp = dwr.util.byId(idBoton);
+            window["botonEnProcesoId"] = idBoton;
+            window["botonEnProcesoValueOld"] = bTmp.value;
+            bTmp.value = "Procesando";
+            bTmp.disabled = true;
+        }
+        /**
+         * retorna a la normalidad
+         */
+        function botonOperativo(){
+            var bTmp = dwr.util.byId(window["botonEnProcesoId"]);
+//    alrt("bTmp = " + bTmp);
+            bTmp.value = window["botonEnProcesoValueOld"];
+            bTmp.disabled = false;
+        }
+
     </script>
 </head>
 
