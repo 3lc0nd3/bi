@@ -164,6 +164,8 @@
                             },
                             <%
                                 }  //  END FOR SERIES -1
+
+                                System.out.println("series.size() = " + series.size());
                             %>
                         ],
                         legend:{show:true, location:'no'},
@@ -177,7 +179,7 @@
                             xaxis: {
                                 renderer: jQuery.jqplot.CategoryAxisRenderer,
                                 rendererOptions: { /*forceTickAt0: true, */forceTickAt: 100},
-                                label: '<%=series.get(0)%>',
+                                label: '<%=series.size()>0?series.get(0):""%>',
                                 labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
                                 tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
                                 tickOptions: {
