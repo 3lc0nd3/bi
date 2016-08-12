@@ -12,6 +12,9 @@
     DecimalFormat df = new DecimalFormat("$###,###");
 
     List<List<ValorExcel>> filas = (List<List<ValorExcel>>) session.getAttribute("filasExcel");
+    if (filas == null){
+        filas =  new ArrayList<List<ValorExcel>>();
+    }
 
     List<String> series = new ArrayList<String>();
 
@@ -50,7 +53,7 @@
                         <%
                             for (ValorExcel v : cellList) {
                         %>
-                        <td  align="right"><%=v.getvDouble()%></td>
+                        <td  align="right"cp ><%=v.getvDouble()%></td>
                         <%
                             }
                         %>
