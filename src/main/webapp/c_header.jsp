@@ -80,8 +80,10 @@
         function botonOperativo(){
             var bTmp = dwr.util.byId(window["botonEnProcesoId"]);
 //    alrt("bTmp = " + bTmp);
-            bTmp.value = window["botonEnProcesoValueOld"];
-            bTmp.disabled = false;
+            if (bTmp != null) {
+                bTmp.value = window["botonEnProcesoValueOld"];
+                bTmp.disabled = false;
+            }
         }
 
     </script>

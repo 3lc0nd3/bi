@@ -153,7 +153,7 @@ public class BiDAO extends HibernateDaoSupport{
         return (I8Calculado) DataAccessUtils.uniqueResult(getHibernateTemplate().find("from I8Calculado where AYear = ?", year));
     }
 
-    public int subeArchivoExcel(byte[] archivoExcel){
+    public List<List<ValorExcel>> subeArchivoExcel(byte[] archivoExcel){
         try {
             WebContext wctx = WebContextFactory.get();
             ServletContext context = wctx.getServletContext();
@@ -166,61 +166,25 @@ public class BiDAO extends HibernateDaoSupport{
             outputStream.write(archivoExcel);
             outputStream.close();
 
-
             Workbook wb = null;
             try {
                 wb = WorkbookFactory.create(new File(filePath));
-                logger.info("wb = " + wb);
-                int pages = wb.getNumberOfSheets();
-                logger.info("pages = " + pages);
-                Sheet mySheet = wb.getSheetAt(0);
-                logger.info("mySheet = " + mySheet);
-                Iterator<Row> rowIter = mySheet.rowIterator();
-                logger.info(mySheet.getRow(1).getCell(0));
-
-                XSSFRow row;
-                XSSFCell cell;
-
-                Iterator iterator = mySheet.rowIterator();
-
-                while (iterator.hasNext()) {
-                    row=(XSSFRow) iterator.next();
-                    Iterator cellIterator = row.cellIterator();
+                List<List<ValorExcel>> filas = HojasCalculo.getDoubleValuesFromWorkbook(wb);
 
 
-                    while (cellIterator.hasNext()) {
-                        cell = (XSSFCell) cellIterator.next();
 
-                        switch (cell.getCellType()) {
-                            case Cell.CELL_TYPE_STRING:
-                                System.out.print(cell.getStringCellValue());
-                                break;
-                            case Cell.CELL_TYPE_BOOLEAN:
-                                System.out.print(cell.getBooleanCellValue());
-                                break;
-                            case Cell.CELL_TYPE_NUMERIC:
-//                                System.out.print(cell.getNumericCellValue());
-                                System.out.print(cell);
-                                break;
-                        }
-                        System.out.print(" - ");
-                    }
-                    System.out.println();
-                }
+                return filas;
 
             } catch (InvalidFormatException e) {
                 e.printStackTrace();
             }
-
-
 //            fileIn.close();
 //            getHibernateTemplate().update(tipoPremio);
-            return 1;
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
             logger.debug(e.getMessage());
-            return 0;
+            return null;
         }
-
     }
 }

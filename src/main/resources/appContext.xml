@@ -155,6 +155,7 @@
             <dwr:convert class="co.com.elramireza.bi.model.I7" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.I4" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.I8Calculado" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.ValorExcel" type="bean"/>
 
 
             <dwr:convert class="co.com.elramireza.bi.model.Usuario" type="bean">

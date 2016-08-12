@@ -68,6 +68,11 @@
             };
         })(jQuery);
     });
+
+    function graficaExcel() {
+
+    }
+
     function viewI3(){
         {
             var lista = [[[],[]],[[],[]]];
@@ -131,7 +136,7 @@
         }
     }
 
-    viewI3();
+//    viewI3();
 
     function subeArchivo() {
 //    alrt("Hola 2");
@@ -142,7 +147,22 @@
             botonOperativo();
         } else
             biRemoto.subeArchivoExcel(dwr.util.getValue('fileFoto'),function(data){
-                if(data!=0){
+                if(data!=null){
+                    var lista = [[[],[]],[[],[]]];
+                    /*for (var i = 0; i < data.length; i++) {
+                        var i3 = data[i];
+                        lista[0][i] = [i3.year, i3.totalRevenue];
+                        lista[1][i] = [i3.year, i3.totalExpenses];
+                    }*/
+
+                    for (var i = 0; i < data.length; i++) {
+//                        alrt("i: " + i + " -> " + data[i]);
+                        var filaList = data[i];
+                        for (var j = 0; j < filaList.length; j++) {
+                            alrtError("cell: " + j + " -> " + filaList[j].vDouble);
+                        }
+                    }
+
                     alrt("Bien");
                     botonOperativo();
                 } else {
