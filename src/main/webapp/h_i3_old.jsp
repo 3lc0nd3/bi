@@ -3,7 +3,6 @@
 <%@ page import="co.com.elramireza.bi.dao.BiDAO" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="co.com.elramireza.bi.model.ValorExcel" %>
-<%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <jsp:include page="c_header.jsp"/>
 
@@ -11,17 +10,7 @@
     List<I3Calculado> i3Calculados = biManager.getI3Calculados();
     DecimalFormat df = new DecimalFormat("$###,###");
 
-    List<List<ValorExcel>> filas = (List<List<ValorExcel>>) session.getAttribute("filasExcel");
-
-    List<String> series = new ArrayList<String>();
-
-    List<ValorExcel> cellList = new ArrayList<ValorExcel>();
-    if (filas!=null){
-        cellList = filas.get(0);
-        for (ValorExcel v : cellList) {
-            series.add(v.getvString());
-        }
-    }
+    List<List<ValorExcel>> filas = (List<List<ValorExcel>>) request.getAttribute("filasExcel");
 %>
 
 <div class="row" >
@@ -32,32 +21,21 @@
         <form >
             <div class="six columns">
                 <table border="1">
-                    <tr>
-                        <%
-                            for (String s: series){
-                        %>
-                        <th style="color: white; background-color: black;"><%=s%></th>
-                        <%
-                            }
-                        %>
-                    </tr>
+                    <th>Year</th>
+                    <th>Total Revenue</th>
+                    <th>Total Expenses</th>
+                    <th>Net Operating Result</th>
                     <%
-                        //  EMPIEZA EN 1 PUES EN 0 ESTAN LAS SERIES
-                        for (int i = 1; i < filas.size(); i++) {
-                            cellList = filas.get(i);
+                        for (I3Calculado i3 : i3Calculados){
                     %>
                     <tr>
-                        <%
-                            for (ValorExcel v : cellList) {
-                        %>
-                        <td  align="right"><%=v.getvDouble()%></td>
-                        <%
-                            }
-                        %>
+                        <td><%=i3.getYear()%></td>
+                        <td align="right"><%=df.format(i3.getTotalRevenue())%></td>
+                        <td align="right"><%=df.format(i3.getTotalExpenses())%></td>
+                        <td style="color:<%=i3.getNetOperatingResult()<0?"red":"black"%>;" align="right"><%=df.format(i3.getNetOperatingResult())%></td>
                     </tr>
-                    <%--<td style="color:<%=i3.getNetOperatingResult()<0?"red":"black"%>;" align="right"><%=df.format(i3.getNetOperatingResult())%></td>--%>
                     <%
-                        }  //  END FOR FILAS
+                        }
                     %>
                 </table>
                 <br>
@@ -88,45 +66,33 @@
     jQuery(document).ready(function(){
         (function(jQuery) {
             jQuery.jqplot.YearFormatter = function(format, val){
-//                alert("val = " + val);
+                alert("val = " + val);
                 return Math.round(val * 10000)/100 + '%';
             };
         })(jQuery);
     });
 
+    function graficaExcel() {
+
+    }
+
     function viewI3(){
         {
-            var lista = [
-                <%
-                    for (int i = 1; i < cellList.size(); i++) {
-                    %>
-                    <%="[[],[]],"%><%
-                    }
-                    %>
-            ];
-            <%
-                //  EMPIEZA EN 1 PUES EN 0 ESTAN LAS SERIES
-                for (int i = 1; i < filas.size(); i++) {
-                    cellList = filas.get(i);
-            %>
-            <%
-                    for(int j = 1; j<cellList.size();j++){
-                        ValorExcel v = cellList.get(j);
-                        //  -1 por el renglon de las series
-            %>
-                    lista[<%=j-1%>][<%=i-1%>] = [<%=cellList.get(0).getvDouble()%>, <%=v.getvDouble()%>];
+            var lista = [[[],[]],[[],[]]];
+            biRemoto.getI3Calculados(function(data) {
+                if (data != null) {
+//                    alert("data.length = " + data.length);
+                    /*for (var i = 0; i < data.length; i++) {
+                        var i3 = data[i];
+                        lista[0][i] = [i3.year, i3.totalRevenue];
+                        lista[1][i] = [i3.year, i3.totalExpenses];
+                    }*/
 
-            <%
-                    }
-            %>
-            <%
-                }  //  END FOR FILAS
-            %>
-              /*
+                    lista = [[[],[]],[[],[]],[[],[]]];
+
                     lista[0][0] = [1999, 7];
                     lista[1][0] = [1999, 6];
                     lista[2][0] = [1999, 5];
-                    lista[3][0] = [1999, 15];
 
                     lista[0][1] = [2001, 3];
                     lista[1][1] = [2001, 4];
@@ -142,27 +108,29 @@
 
                     lista[0][4] = [2004, 2];
                     lista[1][4] = [2004, 3];
-                    lista[2][4] = [2004, 1];*/
+                    lista[2][4] = [2004, 1];
 
 //                    alert("lista = " + lista);
                     jQuery('#chart1').empty();
                     jQuery('#chart1').jqplot(lista, {
                         animate: true,
                         animateReplot: true,
-                        title:'Series',
-                        series:[
-                            <%
-                                for (int i = 1; i < series.size(); i++) {
-                                  String s =  series.get(i);
-                            %>
+                        title:'Line Style Options',
+                        /*series:[
                             {
-                                label: "<%=s%>",
+                                label: "Total Revenue",
+                                // Change our line width and use a diamond shaped marker.
+                                markerOptions: { style:'dimaond' }
+                            },
+                            {
+                                label: "Total Expenses",
                                 markerOptions: { size: 7, style:"circle" }
                             },
-                            <%
-                                }  //  END FOR SERIES -1
-                            %>
-                        ],
+                            {
+                                label: "Total another",
+                                markerOptions: { size: 7, style:"plus" }
+                            }
+                        ],*/
                         legend:{show:true, location:'no'},
                         seriesDefaults: {
 //                            pointLabels: { show:true } ,
@@ -174,7 +142,7 @@
                             xaxis: {
                                 renderer: jQuery.jqplot.CategoryAxisRenderer,
                                 rendererOptions: { /*forceTickAt0: true, */forceTickAt: 100},
-                                label: '<%=series.get(0)%>',
+                                label: 'Year',
                                 labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
                                 tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
                                 tickOptions: {
@@ -193,13 +161,14 @@
                             useAxesFormatters: false
                         }
                     });
+                }
+            });
         }
     }
 
     viewI3();
 
     function subeArchivo() {
-        alrt("entro");
 //    alrt("Hola 2");
 //        botonEnProceso("bgFoto");
         var o = jQuery("#fileFoto").val();
@@ -209,10 +178,27 @@
         } else
             biRemoto.subeArchivoExcel(dwr.util.getValue('fileFoto'),function(data){
                 if(data!=null){
+                    var lista = [[[],[]],[[],[]]];
+                    /*for (var i = 0; i < data.length; i++) {
+                        var i3 = data[i];
+                        lista[0][i] = [i3.year, i3.totalRevenue];
+                        lista[1][i] = [i3.year, i3.totalExpenses];
+                    }*/
+
+                    for (var i = 0; i < data.length; i++) {
+//                        alrt("i: " + i + " -> " + data[i]);
+                        var filaList = data[i];
+                        for (var j = 0; j < filaList.length; j++) {
+                            var celda = filaList[j];
+                            alrtError("cell: " + j + " -> " + celda.vDouble);
+                            lista[j][i] = []
+                        }
+                    }
+
                     alrt("Bien");
-                    location.reload();
+                    botonOperativo();
                 } else {
-//                    botonOperativo();
+                    botonOperativo();
                     alrtError("Problemas");
                 }
             });

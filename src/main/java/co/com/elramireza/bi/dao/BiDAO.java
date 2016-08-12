@@ -171,7 +171,7 @@ public class BiDAO extends HibernateDaoSupport{
                 wb = WorkbookFactory.create(new File(filePath));
                 List<List<ValorExcel>> filas = HojasCalculo.getDoubleValuesFromWorkbook(wb);
 
-
+                wctx.getSession().setAttribute("filasExcel",filas);
 
                 return filas;
 
