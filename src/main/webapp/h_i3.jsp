@@ -19,7 +19,7 @@
     List<String> series = new ArrayList<String>();
 
     List<ValorExcel> cellList = new ArrayList<ValorExcel>();
-    if (filas!=null){
+    if (filas.size() > 0){
         cellList = filas.get(0);
         for (ValorExcel v : cellList) {
             series.add(v.getvString());
