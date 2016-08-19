@@ -70,6 +70,7 @@
                 <value>co.com.elramireza.bi.model.I4</value>
                 <value>co.com.elramireza.bi.model.I8Calculado</value>
                 <value>co.com.elramireza.bi.model.I8</value>
+                <value>co.com.elramireza.bi.model.Indicador</value>
             </list>
         </property>
     </bean>
@@ -156,6 +157,7 @@
             <dwr:convert class="co.com.elramireza.bi.model.I4" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.I8Calculado" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.ValorExcel" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.Indicador" type="bean"/>
 
 
             <dwr:convert class="co.com.elramireza.bi.model.Usuario" type="bean">

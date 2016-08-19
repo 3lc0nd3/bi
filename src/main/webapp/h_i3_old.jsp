@@ -78,7 +78,7 @@
 
     function viewI3(){
         {
-            var lista = [[[],[]],[[],[]]];
+            var lista2 = [[[],[]],[[],[]]];
             biRemoto.getI3Calculados(function(data) {
                 if (data != null) {
 //                    alert("data.length = " + data.length);
@@ -88,31 +88,31 @@
                         lista[1][i] = [i3.year, i3.totalExpenses];
                     }*/
 
-                    lista = [[[],[]],[[],[]],[[],[]]];
+                    lista2 = [[[],[]],[[],[]],[[],[]]];
 
-                    lista[0][0] = [1999, 7];
-                    lista[1][0] = [1999, 6];
-                    lista[2][0] = [1999, 5];
+                    lista2[0][0] = [1999, 7];
+                    lista2[1][0] = [1999, 6];
+                    lista2[2][0] = [1999, 5];
 
-                    lista[0][1] = [2001, 3];
-                    lista[1][1] = [2001, 4];
-                    lista[2][1] = [2001, 4];
+                    lista2[0][1] = [2001, 3];
+                    lista2[1][1] = [2001, 4];
+                    lista2[2][1] = [2001, 4];
 
-                    lista[0][2] = [2002, 5];
-                    lista[1][2] = [2002, 6];
-                    lista[2][2] = [2002, 3];
+                    lista2[0][2] = [2002, 5];
+                    lista2[1][2] = [2002, 6];
+                    lista2[2][2] = [2002, 3];
 
-                    lista[0][3] = [2003, 8];
-                    lista[1][3] = [2003, 9];
-                    lista[2][3] = [2003, 2];
+                    lista2[0][3] = [2003, 8];
+                    lista2[1][3] = [2003, 9];
+                    lista2[2][3] = [2003, 2];
 
-                    lista[0][4] = [2004, 2];
-                    lista[1][4] = [2004, 3];
-                    lista[2][4] = [2004, 1];
+                    lista2[0][4] = [2004, 2];
+                    lista2[1][4] = [2004, 3];
+                    lista2[2][4] = [2004, 1];
 
 //                    alert("lista = " + lista);
                     jQuery('#chart1').empty();
-                    jQuery('#chart1').jqplot(lista, {
+                    jQuery('#chart1').jqplot(lista2, {
                         animate: true,
                         animateReplot: true,
                         title:'Line Style Options',
