@@ -4,7 +4,7 @@
     <div class="six columns">
         <div class="container">
             <ul class="nav-bar vertical">
-                <li class=""><a href="h_indicador_1.jsp">Indicador 1</a></li>
+                <li class=""><a href="h_indicador_1.jsp">Tr&aacute;mites RNA</a></li>
                 <%--<li class=""><a href="h_i2.jsp">I2 Student Revenue</a></li>--%>
                 <%--<li class=""><a href="h_i3.jsp">I3 Dash Growth Rev</a></li>--%>
                 <%--<li class=""><a href="h_i4.jsp">I4 Report Capital</a></li>--%>

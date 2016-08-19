@@ -82,7 +82,7 @@
                     jQuery('#chart2').empty();
                     jQuery('#chart1').jqplot(lista, {
                         animate: true,
-                        title:' Indicador ' +1,
+                        title:'Tr&aacute;mites RNA',
                         series:[
                             {
                                 label: "RNA Producidos"
