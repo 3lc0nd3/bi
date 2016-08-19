@@ -105,11 +105,11 @@
                         axes:{
                             xaxis: {
                                 renderer: jQuery.jqplot.CategoryAxisRenderer,
-                                label: 'Fecha',
+                                label: 'Meses',
                                 labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
                                 tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
                                 tickOptions: {
-                                    angle: -40
+                                    angle: -45
 //                        fontFamily: 'Courier New',
 //                        fontSize: '9pt'
                                 }
@@ -121,7 +121,7 @@
                                 tickOptions:{
                                     fontSize:'10pt',
                                     fontFamily:'Tahoma',
-                                    angle:30
+                                    angle:45
                                 }
                             }
                         }
@@ -153,12 +153,12 @@
                             xaxis: {
                                 renderer: jQuery.jqplot.CategoryAxisRenderer,
                                 rendererOptions: { /*forceTickAt0: true, */forceTickAt: 100},
-                                label: 'Fecha',
+                                label: 'Meses',
                                 labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
                                 tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
                                 tickOptions: {
-                                    formatString:'%y'
-//                                    angle: -30
+                                    formatString:'%y',
+                                    angle: -45
                                     //                        fontFamily: 'Courier New',
                                     //                        fontSize: '9pt'
                                 }
