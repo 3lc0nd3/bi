@@ -130,10 +130,10 @@
                     jQuery('#chart2').jqplot(lista2, {
                         animate: true,
                         animateReplot: true,
-                        title:'Indicador 1 (%)',
+                        title:'Tr&aacute;mites RNA (%)',
                         series:[
                          {
-                         label: "Indicador 1",
+                         label: "Tr&aacute;mites RNA",
                          // Change our line width and use a diamond shaped marker.
                          markerOptions: { style:'dimaond' }
                          },
