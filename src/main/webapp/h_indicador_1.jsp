@@ -130,7 +130,7 @@
                     jQuery('#chart2').jqplot(lista2, {
                         animate: true,
                         animateReplot: true,
-                        title:'Indicador 1',
+                        title:'Indicador 1 (%)',
                         series:[
                          {
                          label: "Indicador 1",
