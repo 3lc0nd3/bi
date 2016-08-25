@@ -13,7 +13,8 @@
     <div class="six columns">
         <div class="container">
             <ul class="nav-bar vertical">
-                <li class=""><a href="/">Inicio</a></li>
+                <%--TODO Pendiente--%>
+                <li class=""><a href="/bi">Inicio</a></li>
                 <%
                     for (MaestroIndicadorEntity maestro: maestros){
                 %>
