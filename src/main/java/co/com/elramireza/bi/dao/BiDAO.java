@@ -187,4 +187,12 @@ public class BiDAO extends HibernateDaoSupport{
             return null;
         }
     }
+
+    public MaestroIndicadorEntity getMaestroIndicador(int idMaestroIndicadorEntity){
+        MaestroIndicadorEntity maestroIndicadorEntity =
+                (MaestroIndicadorEntity) getHibernateTemplate().get(
+                        MaestroIndicadorEntity.class, idMaestroIndicadorEntity
+                );
+        return maestroIndicadorEntity;
+    }
 }

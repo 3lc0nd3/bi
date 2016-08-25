@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Table(name = "indicador")
 public class Indicador {
     private int id;
-    private int idIndicador;
+//    private int idIndicador;
+    private MaestroIndicadorEntity maestroIndicador;
     private String version;
     private int fecha;
     private double variable1;
@@ -27,14 +28,14 @@ public class Indicador {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "id_indicador")
-    public int getIdIndicador() {
-        return idIndicador;
+    @ManyToOne
+    @JoinColumn(name = "id_indicador", referencedColumnName = "id")
+    public MaestroIndicadorEntity getMaestroIndicador() {
+        return maestroIndicador;
     }
 
-    public void setIdIndicador(int idIndicador) {
-        this.idIndicador = idIndicador;
+    public void setMaestroIndicador(MaestroIndicadorEntity maestroIndicador) {
+        this.maestroIndicador = maestroIndicador;
     }
 
     @Basic
@@ -97,41 +98,4 @@ public class Indicador {
         this.aceptacion = aceptacion;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Indicador that = (Indicador) o;
-
-        if (id != that.id) return false;
-        if (idIndicador != that.idIndicador) return false;
-        if (fecha != that.fecha) return false;
-        if (Double.compare(that.variable1, variable1) != 0) return false;
-        if (Double.compare(that.variable2, variable2) != 0) return false;
-        if (Double.compare(that.indicador, indicador) != 0) return false;
-        if (Double.compare(that.aceptacion, aceptacion) != 0) return false;
-        if (version != null ? !version.equals(that.version) : that.version != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + idIndicador;
-        result = 31 * result + (version != null ? version.hashCode() : 0);
-        result = 31 * result + fecha;
-        temp = Double.doubleToLongBits(variable1);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(variable2);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(indicador);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(aceptacion);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
 }

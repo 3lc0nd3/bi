@@ -71,6 +71,7 @@
                 <value>co.com.elramireza.bi.model.I8Calculado</value>
                 <value>co.com.elramireza.bi.model.I8</value>
                 <value>co.com.elramireza.bi.model.Indicador</value>
+                <value>co.com.elramireza.bi.model.MaestroIndicadorEntity</value>
             </list>
         </property>
     </bean>
@@ -141,6 +142,8 @@
             <dwr:include method="getI4Values"/>
             <dwr:include method="getI8Calculado"/>
             <dwr:include method="subeArchivoExcel"/>
+            <dwr:include method="getMaestroIndicador"/>
+
 
             
             <!--LOS QUE NO VAN-->
@@ -158,6 +161,7 @@
             <dwr:convert class="co.com.elramireza.bi.model.I8Calculado" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.ValorExcel" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.Indicador" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.MaestroIndicadorEntity" type="bean"/>
 
 
             <dwr:convert class="co.com.elramireza.bi.model.Usuario" type="bean">
