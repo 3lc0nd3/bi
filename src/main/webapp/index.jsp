@@ -75,13 +75,13 @@
                             <%=indicador.getVariable1()%>
                         </td>
                         <td rowspan="2">
-                            <%=indicador.getIndicador()%>
+                            <%=(Math.floor(indicador.getIndicador()*10000))/100%>%
                         </td>
                         <td rowspan="2">
                             ????
                         </td>
                         <td rowspan="2">
-                            <%=indicador.getAceptacion()%>
+                            <%=(Math.floor(indicador.getAceptacion()*10000))/100%>%
                         </td>
                         <td rowspan="2">
                             ????
