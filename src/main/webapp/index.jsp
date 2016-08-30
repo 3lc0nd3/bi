@@ -386,8 +386,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="sidebar-labels m-t-20">
-                            <h5>Tags</h5>
+                        <div class="sidebar-labels section-title">
+                            <h5>Indicadores</h5>
                             <ul class="list-unstyled">
                                 <%
                                     List<MaestroIndicadorEntity> maestros = biManager.getHibernateTemplate().find(
