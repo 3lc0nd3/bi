@@ -1,11 +1,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="co.com.elramireza.bi.model.Indicador" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
-<jsp:include page="c_header.jsp"/>
+<jsp:include page="c_header2.jsp"/>
 
 <%
     List<Indicador> indicadores1 = biManager.getHibernateTemplate().find(
-            "from Indicador where idIndicador = 1 and version = '1'"
+            "from Indicador where maestroIndicador.id = 1  and version = '1'"
     );
 
 %>
@@ -127,7 +127,7 @@
                         }
                     });
 
-                    jQuery('#chart2').jqplot(lista2, {
+                    /*jQuery('#chart2').jqplot(lista2, {
                         animate: true,
                         animateReplot: true,
                         title:'Tr&aacute;mites RNA (%)',
@@ -152,7 +152,7 @@
                         axes:{
                             xaxis: {
                                 renderer: jQuery.jqplot.CategoryAxisRenderer,
-                                rendererOptions: { /*forceTickAt0: true, */forceTickAt: 100},
+                                rendererOptions: { /!*forceTickAt0: true, *!/forceTickAt: 100},
                                 label: 'Meses',
                                 labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
                                 tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
@@ -171,7 +171,7 @@
                             tooltipFormatString: ' %.2f',
                             useAxesFormatters: false
                         }
-                    });
+                    });*/
                 }
 //            });
         }

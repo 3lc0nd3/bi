@@ -46,13 +46,6 @@
 </div>
 
 <script type="text/javascript">
-
-    var cellFuncs = [
-            function(data) { return data.institution;   },
-            function(data) { return data.totalRevenue; },
-            function(data) { return Math.round(data.totalAcademicStaffCosts *100)/100; }
-    ];
-
     function viewI7(){
         dwr.util.removeAllRows("i7tBody");
         var year = dwr.util.getValue("year");
@@ -61,15 +54,7 @@
             var tk = [];
             var lista = [[[],[]],[[],[]]];
             var lista2 = [[[],[]],[[],[]]];
-//            lista2 = [[[],[]],[[],[]],[[],[]]];
-//            biRemoto.getI7Values(insti, year, function(data){
-//                dwr.util.addRows("i7tBody", data, cellFuncs);
                 if (true) {
-//                    for (var i = 0; i < data.length; i++) {
-//                        var i7 = data[i];
-//                        lista[0][i] = [i7.institution, i7.totalRevenue];
-//                        lista[1][i] = [i7.institution, i7.totalAcademicStaffCosts];
-//                    }
                     <%
                         for(int i = 0; i<indicadores1.size();i++){
                             Indicador ind = indicadores1.get(i);
@@ -79,15 +64,9 @@
 
                         lista2[0][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getIndicador()%>];
                         lista2[1][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getAceptacion()%>];
-//                        lista2[2][0] = [1999, 5];
                     <%
                         }
                     %>
-                    /*lista = [
-                        [["a",1], ["b",2], ["c",3], ["d",4]],
-                        [["a",5], ["b",6], ["c",7], ["d",8]]
-                    ];*/
-//                    alert("lista = " + lista);
                     jQuery('#chart1').empty();
                     jQuery('#chart2').empty();
                     jQuery('#chart1').jqplot(lista, {
@@ -172,7 +151,6 @@
                                     //                        fontFamily: 'Courier New',
                                     //                        fontSize: '9pt'
                                 }
-
                             }
                         },
                         highlighter: {
@@ -183,7 +161,6 @@
                         }
                     });
                 }
-//            });
         }
 
     }
