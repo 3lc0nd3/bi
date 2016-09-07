@@ -149,6 +149,21 @@
             /*text-transform: uppercase;*/
             font-weight: normal !important;
         }
+
+        .filaGris {
+            background-color: #d5d5d5;
+            color: #1a1a1a;
+        }
+
+        .filaBlanca {
+            background-color: white;
+            color: black;
+        }
+
+        .filaError{
+            background-color: red;
+            color: black;
+        }
     </style>
 </head>
 <body data-layout="empty-layout" data-palette="palette-4" data-direction="none">
@@ -342,9 +357,31 @@
                             <th>Observaci&oacute;n </th>
                         </tr>
                         <%
+                            int i=0;
+                            String color = "";
+                            String esError = "";
                             for (Indicador indicador: indicadores){
+                                i++;
+                                if(i % 2 == 1){
+                                    color = "filaGris";
+                                } else {
+                                    color = "filaBlanca";
+                                }
+                                if(indicador.getMaestroIndicador().getAceptacionArribaAbajo()==1){  // Esta por encima
+                                    if(indicador.getIndicador() < indicador.getAceptacion()){
+                                        esError = "filaError";
+                                    } else {
+                                        esError = "";
+                                    }
+                                } else {  //  esta por debajo
+                                    if (indicador.getIndicador() > indicador.getAceptacion()) {
+                                        esError = "filaError";
+                                    } else {
+                                        esError = "";
+                                    }
+                                }
                         %>
-                        <tr>
+                        <tr class="<%=color%>">
                             <td rowspan="2">
                                 <%=indicador.getMaestroIndicador().getId()%>
                             </td>
@@ -357,17 +394,17 @@
                             <td rowspan="2">
                                 <%=(Math.floor(indicador.getIndicador()*10000))/100%>%
                             </td>
-                            <td rowspan="2">
-                                ????
-                            </td>
-                            <td rowspan="2">
+                            <td class="<%=esError%>" rowspan="2">
                                 <%=(Math.floor(indicador.getAceptacion()*10000))/100%>%
                             </td>
                             <td rowspan="2">
                                 ????
                             </td>
+                            <td rowspan="2">
+                                ????
+                            </td>
                         </tr>
-                        <tr>
+                        <tr class="<%=color%>">
                             <td>
                                 <%=indicador.getMaestroIndicador().getVar2()%>
                             </td>
