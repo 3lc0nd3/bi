@@ -4,19 +4,22 @@
 <%@ page import="co.com.elramireza.bi.model.MaestroIndicadorEntity" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <%
+
+    List<Integer> meses = biManager.getHibernateTemplate().find(
+            "select distinct fecha from Indicador order by fecha desc "
+    );
+
     String mesS = request.getParameter("mes");
     int mes = 0;
     if (mesS!=null){
         mes = Integer.parseInt(mesS);
+    } else {
+        mes = meses.get(0);
     }
 
     List<Indicador> indicadores = biManager.getHibernateTemplate().find(
             "from Indicador where fecha = ?",
             mes
-    );
-
-    List<Integer> meses = biManager.getHibernateTemplate().find(
-            "select distinct fecha from Indicador order by fecha desc "
     );
 %>
             <%--<div class="row m-b-20">
@@ -123,10 +126,10 @@
                     <%
                         } else {  //  END IF HAY MES
                     %>
-                    <script>
+                    <%--<script>
                         irM();
                     </script>
-                    <%
+                    --%><%
                         }
                     %>
                 </div>
