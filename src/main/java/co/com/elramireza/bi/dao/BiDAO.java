@@ -216,10 +216,17 @@ public class BiDAO extends HibernateDaoSupport{
 
     public int saveIndicador(Indicador indicador){
         Indicador indicadorOld = getIndicador(indicador.getFecha(), indicador.getMaestroIndicador().getId());
+//        System.out.println("indicadorOld = " + indicadorOld);
+//        System.out.println(indicador.getVersion());
+//        logger.info("indicador.getAceptacion() = " + indicador.getAceptacion());
+//        logger.info("indicador.getVariable1() = " + indicador.getVariable1());
+//        logger.info("indicador.getVariable2() = " + indicador.getVariable2());
+//        logger.info("indicador.getId() = " + indicador.getId());
         try {
-            if(indicador==null){
+            if(indicadorOld==null){
                 //  NUEVO
                 indicador.setIndicador(indicador.getVariable2()/indicador.getVariable1());
+                logger.info("indicador.getIndicador() = " + indicador.getIndicador());
                 getHibernateTemplate().save(indicador);
                 return 1;
             } else {
@@ -233,6 +240,9 @@ public class BiDAO extends HibernateDaoSupport{
                 return 1;
             }
         } catch (DataAccessException e) {
+            e.printStackTrace();
+            return 0;
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
