@@ -118,8 +118,8 @@
 
     function cambiaMaestro() {
         var mes = dwr.util.getValue("elMes");
-        if (mes>0) {
-            var idIndicador = dwr.util.getValue('idMaestro');
+        var idIndicador = dwr.util.getValue('idMaestro');
+        if (mes>0 && idIndicador!=0) {
             biRemoto.getMaestroIndicador(
                     idIndicador,
                     function (data) {
