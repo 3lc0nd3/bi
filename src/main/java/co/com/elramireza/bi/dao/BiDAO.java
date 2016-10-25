@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.directwebremoting.WebContext;
 import org.directwebremoting.WebContextFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.dao.support.DataAccessUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -210,6 +211,30 @@ public class BiDAO extends HibernateDaoSupport{
             return indicadors.get(0);
         } else {
             return null;
+        }
+    }
+
+    public int saveIndicador(Indicador indicador){
+        Indicador indicadorOld = getIndicador(indicador.getFecha(), indicador.getMaestroIndicador().getId());
+        try {
+            if(indicador==null){
+                //  NUEVO
+                indicador.setIndicador(indicador.getVariable2()/indicador.getVariable1());
+                getHibernateTemplate().save(indicador);
+                return 1;
+            } else {
+                //  VIEJO
+                indicadorOld.setAceptacion(indicador.getAceptacion());
+                indicadorOld.setVariable1(indicador.getVariable1());
+                indicadorOld.setVariable2(indicador.getVariable2());
+                indicadorOld.setVersion("4");
+                indicadorOld.setIndicador(indicador.getVariable2()/indicador.getVariable1());
+                getHibernateTemplate().update(indicadorOld);
+                return 1;
+            }
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }

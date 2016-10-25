@@ -60,8 +60,8 @@
                             <th>Valores </th>
                             <th>Indicador </th>
                             <th>Valor de Aceptaci&oacute;n </th>
-                            <th>Concepto de Aceptaci&oacute;n </th>
-                            <th>Observaci&oacute;n </th>
+                            <%--<th>Concepto de Aceptaci&oacute;n </th>--%>
+                            <%--<th>Observaci&oacute;n </th>--%>
                         </tr>
                         <%
                             int i=0;
@@ -104,12 +104,12 @@
                             <td style="text-align: right;" class="<%=esError%>" rowspan="2">
                                 <%=(Math.floor(indicador.getAceptacion()*10000))/100%>%
                             </td>
-                            <td rowspan="2">
-                                ????
-                            </td>
-                            <td rowspan="2">
-                                ????
-                            </td>
+                            <%--<td rowspan="2">--%>
+                                <%--????--%>
+                            <%--</td>--%>
+                            <%--<td rowspan="2">--%>
+                                <%--????--%>
+                            <%--</td>--%>
                         </tr>
                         <tr class="<%=color%>">
                             <td>

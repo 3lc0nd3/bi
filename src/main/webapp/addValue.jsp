@@ -62,7 +62,7 @@
                     <span id="var2span"></span>
                     <input id="variable2">
                     <br>
-                    <span id="">Aceptaci&oacute;n</span>
+                    <span id="">Aceptaci&oacute;n % (0-100)</span>
                     <input id="aceptacion">
                     <br>
 
@@ -92,6 +92,28 @@
 
     function guardar() {
 
+        var maestroIndicadorM = {
+            id : dwr.util.getValue("idMaestro")
+        };
+
+        var indicador = {
+            id : 0,
+            maestroIndicador : maestroIndicadorM,
+            version : 3,
+            fecha : dwr.util.getValue("elMes"),
+            variable1 : dwr.util.getValue("variable1"),
+            variable2 : dwr.util.getValue("variable2"),
+            aceptacion: dwr.util.getValue("aceptacion")/100
+        };
+
+        biRemoto.saveIndicador(indicador, function (data) {
+            if (data==1) {
+                alrt("Guardado");
+            } else {
+                alrtError("Problemas");
+            }
+        });
+
     }
 
     function cambiaMaestro() {
@@ -110,7 +132,7 @@
                                         alrt("Ya existe");
                                         dwr.util.setValue("variable1",data.variable1);
                                         dwr.util.setValue("variable2",data.variable2);
-                                        dwr.util.setValue("aceptacion",data.aceptacion);
+                                        dwr.util.setValue("aceptacion",data.aceptacion*100);
                                     } else {
                                         alrt("nuevo");
                                         dwr.util.setValue("variable1","");
