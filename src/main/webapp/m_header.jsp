@@ -234,6 +234,17 @@
                             </ul>
                         </div>
                         <div class="sidebar-labels section-title">
+                            <h5>Configuraci&oacute;n</h5>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="fa fa-dot-circle-o color-success"></i>
+                                    <span class="m-l-10">
+                                        <a href="addValue.jsp"> Agregar valores</a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-labels section-title">
                             <h5>Indicadores</h5>
                             <ul class="list-unstyled">
                                 <%

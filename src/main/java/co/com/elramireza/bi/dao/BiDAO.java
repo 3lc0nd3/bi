@@ -195,4 +195,21 @@ public class BiDAO extends HibernateDaoSupport{
                 );
         return maestroIndicadorEntity;
     }
+
+    public Indicador getIndicador(int mes, int idIndicador){
+        Object o[] = {
+                mes,
+                idIndicador
+        };
+
+        List<Indicador> indicadors = getHibernateTemplate().find(
+                "from Indicador where fecha = ? and maestroIndicador.id = ?",
+                o
+        );
+        if(indicadors.size()>0){
+            return indicadors.get(0);
+        } else {
+            return null;
+        }
+    }
 }

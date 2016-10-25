@@ -143,6 +143,7 @@
             <dwr:include method="getI8Calculado"/>
             <dwr:include method="subeArchivoExcel"/>
             <dwr:include method="getMaestroIndicador"/>
+            <dwr:include method="getIndicador"/>
 
 
             
