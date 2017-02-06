@@ -14,6 +14,7 @@ public class MaestroIndicadorEntity {
     private String var1;
     private String var2;
     private int aceptacionArribaAbajo;
+    private double aceptacion;
 
     @Id
     @Column(name = "id")
@@ -64,4 +65,15 @@ public class MaestroIndicadorEntity {
     public void setAceptacionArribaAbajo(int aceptacionArribaAbajo) {
         this.aceptacionArribaAbajo = aceptacionArribaAbajo;
     }
+
+    @Basic
+    @Column(name = "aceptacion")
+    public double getAceptacion() {
+        return aceptacion;
+    }
+
+    public void setAceptacion(double aceptacion) {
+        this.aceptacion = aceptacion;
+    }
 }
+

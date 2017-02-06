@@ -79,6 +79,59 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="factory"/>
     </bean>
+    <bean id="factoryOracle" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost/orabi</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.username">orabi</prop>
+                <prop key="hibernate.connection.password">orabi</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+
+                <prop key="hibernate.connection.autocommit">true</prop>
+
+                <prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</prop>
+
+                <prop key="hibernate.c3p0.min_size">2</prop>
+                <prop key="hibernate.c3p0.max_size">10</prop>
+                <prop key="hibernate.c3p0.timeout">1800</prop>
+                <prop key="hibernate.c3p0.max_statements">100</prop>
+
+            </props>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <!--<value>co.com.elramireza.bi.model.MaestroIndicadorEntity</value>-->
+                <value>co.com.elramireza.bi.modelOracle.Ind01D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind01N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind02D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind02N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind06D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind06N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind08D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind08N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind11D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind19D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind19N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind20D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind20N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind21D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind21N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind24D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind24N</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind25D</value>
+                <value>co.com.elramireza.bi.modelOracle.Ind25N</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="transactionManagerOracle" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="factoryOracle"/>
+    </bean>
 
     <!-- ..................................... -->
     <!-- Configuracion del Contexto WEB   __-  -->
@@ -89,6 +142,7 @@
             <map>
 <!-- inyecta los siguientes beans en el servlet context para que los servlets puedan acceder a ellos -->
                 <entry key="biManager" value-ref="biDAO" />
+                <entry key="oraManager" value-ref="oracleDAO" />
             </map>
         </property>
     </bean>
@@ -171,9 +225,20 @@
             </dwr:convert>
         </dwr:remote>
         <property name="sessionFactory" ref="factory"/>
+        <property name="oracleDAO"   ref="oracleDAO"/>
     </bean>
 
+    <bean id="oracleDAO" class="co.com.elramireza.bi.dao.OracleDao">
+        <dwr:remote javascript="oracleRemoto">
 
+            <!--<dwr:include method="getSolicitudesNuevasFromPos"/>-->
+
+
+            <!--<dwr:convert class="co.com.elramireza.bi.modelOracle." type="bean"></dwr:convert>-->
+
+        </dwr:remote>
+        <property name="sessionFactory" ref="factoryOracle"/>
+    </bean>
 
 
 

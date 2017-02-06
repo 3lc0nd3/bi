@@ -13,10 +13,24 @@
     MaestroIndicadorEntity maestroIndicadorEntity = biManager.getMaestroIndicador(idIndicador);
 
 
-    List<Indicador> indicadores1 = biManager.getHibernateTemplate().find(
+    List<Indicador> indicadores1;
+
+    switch (idIndicador) {
+        case 1 :
+            System.out.println("Entro a 1");
+            indicadores1 = biManager.getValoresIndicador1();
+            break;
+        default:
+            indicadores1 = biManager.getValoresIndicador1();
+            break;
+    }
+
+    System.out.println("indicadores1.size() = " + indicadores1.size());
+
+    /*indicadores1 = biManager.getHibernateTemplate().find(
             "from Indicador where maestroIndicador.id = ? and version = '1'",
             idIndicador
-    );
+    );*/
 
 %>
 <script>

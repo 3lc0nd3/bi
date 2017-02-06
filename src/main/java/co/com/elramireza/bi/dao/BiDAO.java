@@ -23,6 +23,7 @@ import co.com.elramireza.bi.model.*;
 
 import javax.servlet.ServletContext;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,11 +40,12 @@ import java.util.List;
 })
 public class BiDAO extends HibernateDaoSupport{
 
+    private OracleDao oracleDAO;
+
     public String test(String tmp){
         logger.info("tmp = " + tmp);
         return "Hola: " + tmp;
     }
-
 
     public Usuario getUsuario(int id){
         return (Usuario) getHibernateTemplate().get(Usuario.class, id);
@@ -247,4 +249,46 @@ public class BiDAO extends HibernateDaoSupport{
             return 0;
         }
     }
+
+    public void setOracleDAO(OracleDao oracleDAO) {
+        this.oracleDAO = oracleDAO;
+    }
+
+    public OracleDao getOracleDAO() {
+        return oracleDAO;
+    }
+
+
+    public List<Indicador> getValoresIndicador1(){
+
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(1);
+        List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
+                "select i01n.n01Aaaamm, i01n.n01Valor, i01d.d01Valor " +
+                        " from Ind01N AS i01n, Ind01D as i01d " +
+                        " where i01n.n01Aaaamm = i01d.d01Aaaamm"
+        );
+
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        Indicador indicador;
+        for (int i = 0; i < valores.size(); i++) {
+
+            indicador = new Indicador();
+            Object[] objects = valores.get(i);
+
+            System.out.println("(Integer) objects[0] = " + (Integer) objects[0]);
+
+            indicador.setMaestroIndicador(maestroIndicador);
+            indicador.setFecha((Integer) objects[0]);
+            indicador.setVariable1((Integer) objects[1]);
+            indicador.setVariable2((Integer) objects[2]);
+            indicador.setIndicador(indicador.getVariable1()/indicador.getVariable2());
+            indicador.setAceptacion(maestroIndicador.getAceptacion());
+
+            indicadores.add(indicador);
+        }
+
+        return indicadores;
+
+    }
+
 }
