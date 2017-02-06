@@ -275,7 +275,7 @@ public class BiDAO extends HibernateDaoSupport{
             indicador = new Indicador();
             Object[] objects = valores.get(i);
 
-            System.out.println("(Integer) objects[0] = " + (Integer) objects[0]);
+//            System.out.println("(Integer) objects[0] = " + (Integer) objects[0]);
 
             indicador.setMaestroIndicador(maestroIndicador);
             indicador.setFecha((Integer) objects[0]);
