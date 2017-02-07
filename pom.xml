@@ -79,6 +79,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>10.2.0.2.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate</artifactId>
             <version>3.2.1.ga</version>

@@ -7,7 +7,7 @@ import javax.persistence.*;
  * elramireza@gmail.com
  */
 @Entity
-@Table(name = "IND_02_D", schema = "orabi", catalog = "")
+@Table(name = "IND_02_D")
 public class Ind02D {
     private int d02Aaaamm;
     private Integer d02Valor;

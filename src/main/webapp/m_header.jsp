@@ -259,7 +259,10 @@
                                 <li>
                                     <i class="fa fa-dot-circle-o color-success"></i>
                                         <span class="m-l-10">
-                                            <a href="h_charts.jsp?id=<%=maestro.getId()%>"><%=maestro.getNombre()%></a>
+                                            <a href="h_charts.jsp?id=<%=maestro.getId()%>">
+                                                <%=maestro.getId()%> -
+                                                <%=maestro.getNombre()%>
+                                            </a>
                                         </span> </li>
                                 <%
                                     }  //  END FOR MAESTROS

@@ -20,12 +20,28 @@
             System.out.println("Entro a 1");
             indicadores1 = biManager.getValoresIndicador1();
             break;
+        case 2:
+            System.out.println("Entro a 2");
+            indicadores1 = biManager.getValoresIndicador2();
+            break;
+        case 6:
+            System.out.println("Entro a 6");
+            indicadores1 = biManager.getValoresIndicador6();
+            break;
+        case 8:
+            System.out.println("Entro a 8");
+            indicadores1 = biManager.getValoresIndicador8();
+            break;
+        case 19:
+            System.out.println("Entro a 19");
+            indicadores1 = biManager.getValoresIndicador19();
+            break;
         default:
             indicadores1 = biManager.getValoresIndicador1();
             break;
     }
 
-    System.out.println("indicadores1.size() = " + indicadores1.size());
+//    System.out.println("indicadores1.size() = " + indicadores1.size());
 
     /*indicadores1 = biManager.getHibernateTemplate().find(
             "from Indicador where maestroIndicador.id = ? and version = '1'",
@@ -66,8 +82,8 @@
                         lista[0][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getVariable1()%>];
                         lista[1][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getVariable2()%>];
 
-                        lista2[0][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getIndicador()%>];
-                        lista2[1][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getAceptacion()%>];
+                        lista2[0][<%=i%>] = [<%=ind.getFecha()%>, 100*<%=ind.getIndicador()%>];
+                        lista2[1][<%=i%>] = [<%=ind.getFecha()%>, 100*<%=ind.getAceptacion()%>];
                         <%
                             }
                         %>
@@ -133,12 +149,12 @@
                             title:'<%=maestroIndicadorEntity.getNombre()%> (%)',
                             series:[
                                 {
-                                    label: "<%=maestroIndicadorEntity.getVar1()%>",
+                                    label: "Indicador %<%--<%=maestroIndicadorEntity.getVar1()%>--%>",
                                     // Change our line width and use a diamond shaped marker.
                                     markerOptions: { style:'dimaond' }
                                 },
                                 {
-                                    label: "<%=maestroIndicadorEntity.getVar2()%>",
+                                    label: "Criterio %<%--<%=maestroIndicadorEntity.getVar2()%>--%>",
                                     markerOptions: { size: 7, style:"circle" }
                                 }
                             ],

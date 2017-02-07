@@ -260,35 +260,92 @@ public class BiDAO extends HibernateDaoSupport{
 
 
     public List<Indicador> getValoresIndicador1(){
-
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(1);
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select i01n.n01Aaaamm, i01n.n01Valor, i01d.d01Valor " +
                         " from Ind01N AS i01n, Ind01D as i01d " +
                         " where i01n.n01Aaaamm = i01d.d01Aaaamm"
         );
-
         List<Indicador> indicadores = new ArrayList<Indicador>();
         Indicador indicador;
-        for (int i = 0; i < valores.size(); i++) {
-
-            indicador = new Indicador();
-            Object[] objects = valores.get(i);
-
-//            System.out.println("(Integer) objects[0] = " + (Integer) objects[0]);
-
-            indicador.setMaestroIndicador(maestroIndicador);
-            indicador.setFecha((Integer) objects[0]);
-            indicador.setVariable1((Integer) objects[1]);
-            indicador.setVariable2((Integer) objects[2]);
-            indicador.setIndicador(indicador.getVariable1()/indicador.getVariable2());
-            indicador.setAceptacion(maestroIndicador.getAceptacion());
-
-            indicadores.add(indicador);
+        for (Object[] objects: valores) {
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
         }
-
         return indicadores;
+    }
 
+    public List<Indicador> getValoresIndicador2(){
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(2);
+        List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
+                "select numerador.n02Aaaamm, numerador.n02Valor, denominador.d02Valor " +
+                        " from Ind02N AS numerador, Ind02D as denominador " +
+                        " where numerador.n02Aaaamm = denominador.d02Aaaamm"
+        );
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        Indicador indicador;
+        for (Object[] objects: valores) {
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+        return indicadores;
+    }
+
+    public List<Indicador> getValoresIndicador6(){
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(6);
+        List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
+                "select numerador.n06Aaaamm, numerador.n06Valor, denominador.d06Valor " +
+                        " from Ind06N AS numerador, Ind06D as denominador " +
+                        " where numerador.n06Aaaamm = denominador.d06Aaaamm"
+        );
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+        return indicadores;
+    }
+
+    public List<Indicador> getValoresIndicador19(){
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(19);
+        List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
+                "select numerador.n19Aaaamm, numerador.n19Valor, denominador.d19Valor " +
+                        " from Ind19N AS numerador, Ind19D as denominador " +
+                        " where numerador.n19Aaaamm = denominador.d19Aaaamm"
+        );
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+        return indicadores;
+    }
+
+    public List<Indicador> getValoresIndicador8(){
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(8);
+        List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
+                "select numerador.n08Aaaamm, numerador.n08Valor, denominador.d08Valor " +
+                        " from Ind08N AS numerador, Ind08D as denominador " +
+                        " where numerador.n08Aaaamm = denominador.d08Aaaamm"
+        );
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+        return indicadores;
+    }
+
+    public Indicador poblateIndicadorFromObjetcs(Object[] objects,
+                                                 MaestroIndicadorEntity maestroIndicador){
+        Indicador indicador;
+        indicador = new Indicador();
+        indicador.setMaestroIndicador(maestroIndicador);
+        indicador.setFecha((Integer) objects[0]);
+        indicador.setVariable1((Integer) objects[1]);
+        indicador.setVariable2((Integer) objects[2]);
+        if (indicador.getVariable2()!=0) {
+            indicador.setIndicador(indicador.getVariable1() / indicador.getVariable2());
+        } else {
+            indicador.setIndicador(0);
+        }
+        indicador.setAceptacion(maestroIndicador.getAceptacion());
+        return indicador;
     }
 
 }
