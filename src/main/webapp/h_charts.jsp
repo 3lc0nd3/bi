@@ -2,8 +2,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="co.com.elramireza.bi.model.Indicador" %>
 <%@ page import="co.com.elramireza.bi.model.MaestroIndicadorEntity" %>
+<%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <%
+    int cuantosUltimos = 1000;
+
     String idIndicadorS = request.getParameter("id");
     int idIndicador = 0;
     if(idIndicadorS!=null){
@@ -13,31 +16,103 @@
     MaestroIndicadorEntity maestroIndicadorEntity = biManager.getMaestroIndicador(idIndicador);
 
 
-    List<Indicador> indicadores1;
+    List<Indicador> indicadores;
 
     switch (idIndicador) {
         case 1 :
             System.out.println("Entro a 1");
-            indicadores1 = biManager.getValoresIndicador1();
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador1(),cuantosUltimos);
             break;
         case 2:
             System.out.println("Entro a 2");
-            indicadores1 = biManager.getValoresIndicador2();
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador2(),cuantosUltimos);
+            break;
+        case 3:
+            System.out.println("Entro a 3");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(3),cuantosUltimos);
+            break;
+        case 4:
+            System.out.println("Entro a 4");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(4),cuantosUltimos);
             break;
         case 6:
             System.out.println("Entro a 6");
-            indicadores1 = biManager.getValoresIndicador6();
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador6(),cuantosUltimos);
+            break;
+        case 7:
+            System.out.println("Entro a 7");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(7),cuantosUltimos);
             break;
         case 8:
             System.out.println("Entro a 8");
-            indicadores1 = biManager.getValoresIndicador8();
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador8(),cuantosUltimos);
+            break;
+        case 9:
+            System.out.println("Entro a 9");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador9(),cuantosUltimos);
+            break;
+        case 10:
+            System.out.println("Entro a 10");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador10(),cuantosUltimos);
+            break;
+        case 11:
+            System.out.println("Entro a 11");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador11(),cuantosUltimos);
+            break;
+        case 13:
+            System.out.println("Entro a 13");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(13),cuantosUltimos);
+            break;
+        case 14:
+            System.out.println("Entro a 14");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador14(),cuantosUltimos);
+            break;
+        case 15:
+            System.out.println("Entro a 15");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador15(),cuantosUltimos);
+            break;
+        case 16:
+            System.out.println("Entro a 16");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador16(),cuantosUltimos);
+            break;
+        case 17:
+            System.out.println("Entro a 17");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador17(),cuantosUltimos);
+            break;
+        case 18:
+            System.out.println("Entro a 18");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador18(),cuantosUltimos);
             break;
         case 19:
             System.out.println("Entro a 19");
-            indicadores1 = biManager.getValoresIndicador19();
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador19(),cuantosUltimos);
+            break;
+        case 20:
+            System.out.println("Entro a 20");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador20(),cuantosUltimos);
+            break;
+        case 21:
+            System.out.println("Entro a 21");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador21(),cuantosUltimos);
+            break;
+        case 22:
+            System.out.println("Entro a 22");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador22(),cuantosUltimos);
+            break;
+        case 23:
+            System.out.println("Entro a 23");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador23(),cuantosUltimos);
+            break;
+        case 24:
+            System.out.println("Entro a 24");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador24(),cuantosUltimos);
+            break;
+        case 25:
+            System.out.println("Entro a 25");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador25(),cuantosUltimos);
             break;
         default:
-            indicadores1 = biManager.getValoresIndicador1();
+            indicadores = new ArrayList<Indicador>();
             break;
     }
 
@@ -76,8 +151,8 @@
                     var lista2 = [[[],[]],[[],[]]];
                     if (true) {
                         <%
-                            for(int i = 0; i<indicadores1.size();i++){
-                                Indicador ind = indicadores1.get(i);
+                            for(int i = 0; i<indicadores.size();i++){
+                                Indicador ind = indicadores.get(i);
                         %>
                         lista[0][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getVariable1()%>];
                         lista[1][<%=i%>] = [<%=ind.getFecha()%>, <%=ind.getVariable2()%>];
@@ -201,20 +276,23 @@
 
 <div class="row m-b-20">
                     <div class="col-xs-12 col-lg-6">
-                        <h3><%=maestroIndicadorEntity.getNombre()%></h3>
+                        <h3>
+                            <%=maestroIndicadorEntity.getId()%> -
+                            <%=maestroIndicadorEntity.getNombre()%>
+                        </h3>
                         <p></p>
                     </div>
                 </div>
                 <div class="row m-b-40">
                     <div class="col-md-6">
-                        <h4> Bar chart </h4>
+                        <h4> Comparativo </h4>
                         <div id="chart1" style="height:500px; width:100%;"></div>
                         <%--<div id="chart1">--%>
                         <%--<div id="morris-bar-example">--%>
                         <%--</div>--%>
                     </div>
                     <div class="col-md-6">
-                        <h4> Line chart </h4>
+                        <h4> Aceptaci&oacute;n</h4>
                         <div id="chart2" style="height:500px; width:100%;"></div>
                         <%--<div id="morris-line-example">--%>
                         </div>

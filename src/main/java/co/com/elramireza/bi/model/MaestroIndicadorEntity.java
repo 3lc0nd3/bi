@@ -1,5 +1,7 @@
 package co.com.elramireza.bi.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -15,6 +17,10 @@ public class MaestroIndicadorEntity {
     private String var2;
     private int aceptacionArribaAbajo;
     private double aceptacion;
+
+    private boolean estaOracleN;
+    private boolean estaOracleD;
+
 
     @Id
     @Column(name = "id")
@@ -74,6 +80,28 @@ public class MaestroIndicadorEntity {
 
     public void setAceptacion(double aceptacion) {
         this.aceptacion = aceptacion;
+    }
+
+    @Basic
+    @Column(name = "esta_oracle_n")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean isEstaOracleN() {
+        return estaOracleN;
+    }
+
+    public void setEstaOracleN(boolean estaOracleN) {
+        this.estaOracleN = estaOracleN;
+    }
+
+    @Basic
+    @Column(name = "esta_oracle_d")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean isEstaOracleD() {
+        return estaOracleD;
+    }
+
+    public void setEstaOracleD(boolean estaOracleD) {
+        this.estaOracleD = estaOracleD;
     }
 }
 

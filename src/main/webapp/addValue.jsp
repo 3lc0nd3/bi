@@ -33,18 +33,8 @@
             </div>--%>
             <div style="margin-bottom: 5px !important;" class="row m-b-40">
                 <div class="col-md-12">
-                    Selecciones el mes:
-                    <select id="elMes" class="c-select" onchange="cambiaMaestro()">
-                        <%
-                            for (Integer elMes : meses) {
-                        %>
-                        <option value="<%=elMes%>"><%=elMes%></option>
-                        <%
-                            }  //  END FOR MESES
-                        %>
-                    </select>
-                    <%--<br>--%>
-                    Selecciones el indicador
+
+                    Seleccione el indicador
                     <select id="idMaestro" class="c-select" onchange="cambiaMaestro()">
                         <option value="0">Seleccione...</option>
                         <%
@@ -55,6 +45,33 @@
                             }  //  END FOR MAESTROS
                         %>
                     </select>
+                    Selecciones el mes:
+                    <select id="elMes" class="c-select" onchange="cambiaMaestro()">
+                        <%
+                            for (Integer elMes : meses) {
+                        %>
+                        <option value="<%=elMes%>"><%=elMes%></option>
+                        <%
+                            }  //  END FOR MESES
+                        %>
+                    </select>
+                    D&iacute;a:
+                    <select id="elDia" class="c-select" onchange="cambiaMaestro()">
+                        <%
+                            String diaS;
+                            for (int i=1; i<32; i++) {
+                                if(i<10){
+                                    diaS="0"+i;
+                                } else {
+                                    diaS = String.valueOf(i);
+                                }
+                        %>
+                        <option value="<%=diaS%>"><%=diaS%></option>
+                        <%
+                            }  //  END FOR MESES
+                        %>
+                    </select>
+                    <%--<br>--%>
                     <br>
                     <span id="var1span"></span>
                     <input id="variable1">
@@ -62,9 +79,9 @@
                     <span id="var2span"></span>
                     <input id="variable2">
                     <br>
-                    <span id="">Aceptaci&oacute;n % (0-100)</span>
+                    <%--<span id="">Aceptaci&oacute;n % (0-100)</span>
                     <input id="aceptacion">
-                    <br>
+                    <br>--%>
 
                     <input onclick="guardar();" type="button" value="Guardar" class="btn btn-primary">
                 </div>
@@ -99,11 +116,11 @@
         var indicador = {
             id : 0,
             maestroIndicador : maestroIndicadorM,
-            version : 3,
+            version : 1,
             fecha : dwr.util.getValue("elMes"),
+            fechaDia : dwr.util.getValue("elMes")+dwr.util.getValue("elDia"),
             variable1 : dwr.util.getValue("variable1"),
-            variable2 : dwr.util.getValue("variable2"),
-            aceptacion: dwr.util.getValue("aceptacion")/100
+            variable2 : dwr.util.getValue("variable2")
         };
 
         biRemoto.saveIndicador(indicador, function (data) {
@@ -117,7 +134,8 @@
     }
 
     function cambiaMaestro() {
-        var mes = dwr.util.getValue("elMes");
+        var mes = dwr.util.getValue("elMes")+dwr.util.getValue("elDia");
+//        alrt(mes);
         var idIndicador = dwr.util.getValue('idMaestro');
         if (mes>0 && idIndicador!=0) {
             biRemoto.getMaestroIndicador(
@@ -132,12 +150,12 @@
                                         alrt("Ya existe");
                                         dwr.util.setValue("variable1",data.variable1);
                                         dwr.util.setValue("variable2",data.variable2);
-                                        dwr.util.setValue("aceptacion",data.aceptacion*100);
+//                                        dwr.util.setValue("aceptacion",data.aceptacion*100);
                                     } else {
                                         alrt("nuevo");
                                         dwr.util.setValue("variable1","");
                                         dwr.util.setValue("variable2","");
-                                        dwr.util.setValue("aceptacion","");
+//                                        dwr.util.setValue("aceptacion","");
                                     }
                                 }
 

@@ -13,6 +13,7 @@ public class Indicador {
     private MaestroIndicadorEntity maestroIndicador;
     private String version;
     private int fecha;
+    private int fechaDia;
     private double variable1;
     private double variable2;
     private double indicador;
@@ -59,6 +60,16 @@ public class Indicador {
     }
 
     @Basic
+    @Column(name = "fecha_dia")
+    public int getFechaDia() {
+        return fechaDia;
+    }
+
+    public void setFechaDia(int fechaDia) {
+        this.fechaDia = fechaDia;
+    }
+
+    @Basic
     @Column(name = "variable_1")
     public double getVariable1() {
         return variable1;
@@ -78,8 +89,7 @@ public class Indicador {
         this.variable2 = variable2;
     }
 
-    @Basic
-    @Column(name = "indicador")
+    @Transient
     public double getIndicador() {
         return indicador;
     }
@@ -88,8 +98,7 @@ public class Indicador {
         this.indicador = indicador;
     }
 
-    @Basic
-    @Column(name = "aceptacion")
+    @Transient
     public double getAceptacion() {
         return aceptacion;
     }

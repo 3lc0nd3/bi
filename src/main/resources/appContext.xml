@@ -42,6 +42,7 @@
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
                 <prop key="hibernate.connection.username">bi</prop>
                 <prop key="hibernate.connection.password">bi</prop>
+
                 <prop key="hibernate.show_sql">false</prop>
                 <!--<prop key="hibernate.show_sql">true</prop>-->
 
@@ -60,17 +61,10 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>co.com.elramireza.bi.model.I1</value>
                 <value>co.com.elramireza.bi.model.Usuario</value>
-                <value>co.com.elramireza.bi.model.I2</value>
-                <value>co.com.elramireza.bi.model.O4Calculado</value>
-                <value>co.com.elramireza.bi.model.I6</value>
-                <value>co.com.elramireza.bi.model.I7</value>
-                <value>co.com.elramireza.bi.model.I3Calculado</value>
-                <value>co.com.elramireza.bi.model.I4</value>
-                <value>co.com.elramireza.bi.model.I8Calculado</value>
-                <value>co.com.elramireza.bi.model.I8</value>
                 <value>co.com.elramireza.bi.model.Indicador</value>
+                <value>co.com.elramireza.bi.model.IndicadorAgrupadoMes</value>
+                <value>co.com.elramireza.bi.model.TempIndicador</value>
                 <value>co.com.elramireza.bi.model.MaestroIndicadorEntity</value>
             </list>
         </property>
@@ -227,6 +221,7 @@
             <dwr:convert class="co.com.elramireza.bi.model.I8Calculado" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.ValorExcel" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.Indicador" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.IndicadorAgrupadoMes" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.MaestroIndicadorEntity" type="bean"/>
 
 
