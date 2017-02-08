@@ -5,7 +5,6 @@
 <%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <%
-
     List<Integer> meses = biManager.getHibernateTemplate().find(
             "select distinct fecha from Indicador order by fecha desc "
     );
