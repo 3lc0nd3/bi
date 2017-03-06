@@ -143,7 +143,7 @@
                         <%
                             for (Integer elMes : meses) {
                         %>
-                        <option value="<%=elMes%>"><%=elMes%></option>
+                        <option value="<%=elMes%>" <%=elMes==mes?"selected":""%>><%=elMes%></option>
                         <%
                             }  //  END FOR MESES
                         %>

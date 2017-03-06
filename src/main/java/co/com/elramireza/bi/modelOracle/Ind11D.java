@@ -23,7 +23,7 @@ public class Ind11D {
     }
 
     @Basic
-    @Column(name = "n11_valor")
+    @Column(name = "D11_VALOR")
     public Integer getN11Valor() {
         return n11Valor;
     }

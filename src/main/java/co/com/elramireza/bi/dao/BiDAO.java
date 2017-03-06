@@ -479,6 +479,47 @@ public class BiDAO extends HibernateDaoSupport{
     }
 
     public List<Indicador> getValoresIndicador22(){
+
+
+        //  Borro todo el 19 de Mysql
+
+        getHibernateTemplate().execute(new HibernateCallback() {
+            @Override
+            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+                Query query = session.createQuery(
+                        "delete from Indicador where maestroIndicador.id = :Id19 "
+                );
+                query.setInteger("Id19", 19);
+                query.executeUpdate();
+
+                return null;
+            }
+        });
+
+        //  Poblar
+        List<Indicador> los19 = getValoresIndicador19();
+
+        for (Indicador indicador19 : los19) {
+            MaestroIndicadorEntity maestroIndicador19 = getMaestroIndicador(19);
+            Indicador new19 = new Indicador();
+
+            new19.setMaestroIndicador(maestroIndicador19);
+            new19.setFecha(indicador19.getFecha());
+            new19.setVersion("2");
+            new19.setFechaDia(0);
+            new19.setVariable1(indicador19.getVariable1());
+            new19.setVariable2(indicador19.getVariable2());
+            getHibernateTemplate().save(new19);
+
+        }
+
+
+
+
+
+
+
+
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(22);
 
         org.hibernate.Session hbSession = getSession();
@@ -508,7 +549,66 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }
 
+    public List<Indicador> getValoresIndicador23New(){
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(23);
+
+        org.hibernate.Session hbSession = getSession();
+        Transaction hbTs = hbSession.beginTransaction();
+
+        String sql = "SELECT  fecha, n, d  FROM indicador_agrupado_mes WHERE id_indicador = :idIndNumerador ";
+        SQLQuery query = hbSession.createSQLQuery(sql);
+
+        query.setInteger("idIndNumerador", maestroIndicador.getId());
+
+        List<Object[]> valores = query.list();
+
+        hbTs.commit();
+        hbSession.close();
+
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            objects[1] = (Integer) ((Double) objects[1]).intValue();
+            objects[2] = (Integer) ((Double) objects[2]).intValue();
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+        return indicadores;
+    }
+
     public List<Indicador> getValoresIndicador23(){
+
+        //  Borro todo el 19 de Mysql
+
+        getHibernateTemplate().execute(new HibernateCallback() {
+            @Override
+            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+                Query query = session.createQuery(
+                        "delete from Indicador where maestroIndicador.id = :Id19 "
+                );
+                query.setInteger("Id19", 19);
+                query.executeUpdate();
+
+                return null;
+            }
+        });
+
+        //  Poblar
+        List<Indicador> los19 = getValoresIndicador19();
+
+        for (Indicador indicador19 : los19) {
+            MaestroIndicadorEntity maestroIndicador19 = getMaestroIndicador(19);
+            Indicador new19 = new Indicador();
+
+            new19.setMaestroIndicador(maestroIndicador19);
+            new19.setFecha(indicador19.getFecha());
+            new19.setVersion("2");
+            new19.setFechaDia(0);
+            new19.setVariable1(indicador19.getVariable1());
+            new19.setVariable2(indicador19.getVariable2());
+            getHibernateTemplate().save(new19);
+
+        }
+
+
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(23);
 
         org.hibernate.Session hbSession = getSession();
