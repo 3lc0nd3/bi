@@ -37,7 +37,7 @@
                 break;
             case 2:
                 System.out.println("Entro a 2");
-                indicadores.add(biManager.getUnIndicadorSegunFechaMes(mes, biManager.getValoresIndicador2()));
+                indicadores.add(biManager.getUnIndicadorSegunFechaMes(mes, biManager.getIndicadorNDCompleto(2)));
                 break;
             case 3:
                 System.out.println("Entro a 3");
@@ -121,7 +121,7 @@
                 break;
             case 25:
                 System.out.println("Entro a 25");
-                indicadores.add(biManager.getUnIndicadorSegunFechaMes(mes, biManager.getValoresIndicador25()));
+                indicadores.add(biManager.getUnIndicadorSegunFechaMes(mes, biManager.getIndicadorNDCompleto(25)));
                 break;
         }  //  END SWITCH
 

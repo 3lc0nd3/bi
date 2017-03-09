@@ -25,7 +25,7 @@
             break;
         case 2:
             System.out.println("Entro a 2");
-            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador2(),cuantosUltimos);
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(2),cuantosUltimos);
             break;
         case 3:
             System.out.println("Entro a 3");
@@ -109,7 +109,7 @@
             break;
         case 25:
             System.out.println("Entro a 25");
-            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador25(),cuantosUltimos);
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(25),cuantosUltimos);
             break;
         default:
             indicadores = new ArrayList<Indicador>();

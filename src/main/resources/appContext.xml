@@ -76,18 +76,18 @@
     <bean id="factoryOracle" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="hibernateProperties">
             <props>
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.connection.url">jdbc:mysql://localhost/orabi</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
                 <prop key="hibernate.connection.username">orabi</prop>
-                <prop key="hibernate.connection.password">orabi</prop>-->
+                <prop key="hibernate.connection.password">orabi</prop>
 
-                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
                 <prop key="hibernate.connection.url">jdbc:oracle:thin:@192.168.0.17:1521:ora10</prop>
                 <prop key="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</prop>
                 <prop key="hibernate.default_schema">CARTRA</prop>
                 <prop key="hibernate.connection.username">CARTRA</prop>
-                <prop key="hibernate.connection.password">CARTRA</prop>
+                <prop key="hibernate.connection.password">CARTRA</prop>-->
 
                 <prop key="hibernate.show_sql">false</prop>
                 <!--<prop key="hibernate.show_sql">true</prop>-->

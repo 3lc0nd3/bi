@@ -21,6 +21,9 @@ public class MaestroIndicadorEntity {
     private boolean estaOracleN;
     private boolean estaOracleD;
 
+    private boolean editaN;
+    private boolean editaD;
+
 
     @Id
     @Column(name = "id")
@@ -102,6 +105,28 @@ public class MaestroIndicadorEntity {
 
     public void setEstaOracleD(boolean estaOracleD) {
         this.estaOracleD = estaOracleD;
+    }
+
+    @Basic
+    @Column(name = "edita_n")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean isEditaN() {
+        return editaN;
+    }
+
+    public void setEditaN(boolean editaN) {
+        this.editaN = editaN;
+    }
+
+    @Basic
+    @Column(name = "edita_d")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean isEditaD() {
+        return editaD;
+    }
+
+    public void setEditaD(boolean editaD) {
+        this.editaD = editaD;
     }
 }
 

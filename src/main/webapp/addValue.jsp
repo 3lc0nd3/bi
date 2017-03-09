@@ -83,7 +83,7 @@
                     <input id="aceptacion">
                     <br>--%>
 
-                    <input onclick="guardar();" type="button" value="Guardar" class="btn btn-primary">
+                    <input id="bGuardar" onclick="guardar();" type="button" value="Guardar" class="btn btn-primary">
                 </div>
                 <%--<div class="col-md-6">--%>
 <%----%>
@@ -141,8 +141,26 @@
             biRemoto.getMaestroIndicador(
                     idIndicador,
                     function (data) {
-                        dwr.util.setValue("var1span",data.var1);
-                        dwr.util.setValue("var2span",data.var2);
+                        dwr.util.setValue("var1span",data.var1 /*+ data.editaN*/);
+                        dwr.util.setValue("var2span",data.var2 /*+ data.editaD*/);
+
+                        if(data.editaN){
+                            $('#variable1').prop('disabled', false);
+                        } else {
+                            $('#variable1').prop('disabled', true);
+                        }
+                        if(data.editaD){
+                            $('#variable2').prop('disabled', false);
+                        } else {
+                            $('#variable2').prop('disabled', true);
+                        }
+
+                        if(data.editaN || data.editaD){
+                            $('#bGuardar').prop('disabled', false);
+                        } else {
+                            $('#bGuardar').prop('disabled', true);
+                        }
+
 
                         biRemoto.getIndicador(mes, idIndicador,
                                 function (data) {

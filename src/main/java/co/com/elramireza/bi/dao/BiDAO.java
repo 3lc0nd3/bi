@@ -179,7 +179,7 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }
 
-    public List<Indicador> getValoresIndicador2(){
+    /*public List<Indicador> getValoresIndicador2(){
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(2);
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n02Aaaamm, numerador.n02Valor, denominador.d02Valor " +
@@ -192,7 +192,7 @@ public class BiDAO extends HibernateDaoSupport{
             indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
         }
         return indicadores;
-    }
+    }*/
 
     public List<Indicador> getValoresIndicador6(){
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(6);
@@ -652,7 +652,7 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }
 
-    public List<Indicador> getValoresIndicador25(){
+    /*public List<Indicador> getValoresIndicador25(){
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(25);
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n25Aaaamm, numerador.n25Valor, denominador.d25Valor " +
@@ -664,7 +664,7 @@ public class BiDAO extends HibernateDaoSupport{
             indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
         }
         return indicadores;
-    }
+    }*/
 
     public List<Indicador> getIndicadorNDCompleto(int idMaestroIndicador){
         List<Indicador> indicadores = new ArrayList<Indicador>();
@@ -685,9 +685,17 @@ public class BiDAO extends HibernateDaoSupport{
             indicador.setFecha(ia.getFecha());
             indicador.setVariable1(ia.getN());
             indicador.setVariable2(ia.getD());
+//            System.out.println("idMaestroIndicador = " + idMaestroIndicador+"\tindicador.getFecha() = " + indicador.getFecha());
             if (ia.getD() != 0) {
-                indicador.setIndicador(ia.getN() / ia.getD());
+//                System.out.println("si = ");
+                indicador.setIndicador(indicador.getVariable1() / indicador.getVariable2());
+//                System.out.println("ia.getN() = " + ia.getN());
+//                System.out.println("ia.getD() = " + ia.getD());
+//                System.out.println("ia.getN() / ia.getD() = " + ia.getN() / ia.getD());
+//                System.out.println("indicador.getIndicador() = " + indicador.getIndicador());
             } else {
+
+//                System.out.println("no = ");
                 indicador.setIndicador(0);
             }
             indicador.setAceptacion(maestroIndicador.getAceptacion());
@@ -759,7 +767,7 @@ public class BiDAO extends HibernateDaoSupport{
                         " and numerador.fecha = denominador.fecha",
                 o
         );
-        System.out.println("valores.size() = " + valores.size());
+//        System.out.println("valores.size() = " + valores.size());
         List<Indicador> indicadores = new ArrayList<Indicador>();
         for (Object[] objects: valores) {
             indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
