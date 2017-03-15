@@ -5,7 +5,7 @@
 <%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <%
-    int cuantosUltimos = 1000;
+    int cuantosUltimos = 12;
 
     String idIndicadorS = request.getParameter("id");
     int idIndicador = 0;
@@ -33,7 +33,7 @@
             break;
         case 4:
             System.out.println("Entro a 4");
-            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(4),cuantosUltimos);
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador4(),cuantosUltimos);
             break;
         case 6:
             System.out.println("Entro a 6");
@@ -58,6 +58,10 @@
         case 11:
             System.out.println("Entro a 11");
             indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador11(),cuantosUltimos);
+            break;
+        case 12:
+            System.out.println("Entro a 12");
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador12(),cuantosUltimos);
             break;
         case 13:
             System.out.println("Entro a 13");
@@ -110,6 +114,42 @@
         case 25:
             System.out.println("Entro a 25");
             indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(25),cuantosUltimos);
+            break;
+        case 26:
+            System.out.println("Entro a 26");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(26),cuantosUltimos);
+            break;
+        case 27:
+            System.out.println("Entro a 27");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(27),cuantosUltimos);
+            break;
+        case 28:
+            System.out.println("Entro a 28");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(28),cuantosUltimos);
+            break;
+        case 29:
+            System.out.println("Entro a 29");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(29),cuantosUltimos);
+            break;
+        case 30:
+            System.out.println("Entro a 30");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(30),cuantosUltimos);
+            break;
+        case 31:
+            System.out.println("Entro a 31");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(31),cuantosUltimos);
+            break;
+        case 32:
+            System.out.println("Entro a 32");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(32),cuantosUltimos);
+            break;
+        case 33:
+            System.out.println("Entro a 33");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(33),cuantosUltimos);
+            break;
+        case 34:
+            System.out.println("Entro a 34");
+            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(34),cuantosUltimos);
             break;
         default:
             indicadores = new ArrayList<Indicador>();

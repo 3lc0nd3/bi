@@ -194,6 +194,38 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }*/
 
+
+
+    public List<Indicador> getValoresIndicador4(){
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(4);
+
+        org.hibernate.Session hbSession = getSession();
+        Transaction hbTs = hbSession.beginTransaction();
+
+        String sql = "SELECT numerador.fecha,numerador.n as n, denominador.d as d \n" +
+                "FROM `indicador_agrupado_mes` as numerador\n" +
+                "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
+                "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "ORDER BY `numerador`.`fecha` ASC ";
+        SQLQuery query = hbSession.createSQLQuery(sql);
+
+        query.setInteger("idIndNumerador", maestroIndicador.getId());
+        query.setInteger("idIndDenominador", 3);
+
+        List<Object[]> valores = query.list();
+
+        hbTs.commit();
+        hbSession.close();
+
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            objects[1] = (Integer) ((Double) objects[1]).intValue();
+            objects[2] = (Integer) ((Double) objects[2]).intValue();
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+        return indicadores;
+    }
+
     public List<Indicador> getValoresIndicador6(){
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(6);
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
@@ -283,6 +315,38 @@ public class BiDAO extends HibernateDaoSupport{
         }
 
         return getIndicadoresCombinados(maestroIndicador);
+    }
+
+    public List<Indicador> getValoresIndicador12(){
+        MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(12);
+
+        org.hibernate.Session hbSession = getSession();
+        Transaction hbTs = hbSession.beginTransaction();
+
+        String sql = "SELECT numerador.fecha,numerador.n as n, denominador.n as d \n" +
+                "FROM `indicador_agrupado_mes` as numerador\n" +
+                "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
+                "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "ORDER BY `numerador`.`fecha` ASC ";
+        SQLQuery query = hbSession.createSQLQuery(sql);
+
+        query.setInteger("idIndNumerador", maestroIndicador.getId());
+        query.setInteger("idIndDenominador", 4);
+
+        List<Object[]> valores = query.list();
+
+        System.out.println("valores 12 = " + valores.size());
+
+        hbTs.commit();
+        hbSession.close();
+
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            objects[1] = (Integer) ((Double) objects[1]).intValue();
+            objects[2] = (Integer) ((Double) objects[2]).intValue();
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+        return indicadores;
     }
 
     public List<Indicador> getValoresIndicador14(){
@@ -776,14 +840,30 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }
 
-    public Indicador getUnIndicadorSegunFechaMes(int fechaMes,
+    /**
+     * devuelve un indicador con valores de -1 si no encuentra valores
+     * <br>
+     *
+     * @param maestro m
+     * @param fechaMes fe
+     * @param indicadores ind
+     * @return el indicador de la
+     */
+    public Indicador getUnIndicadorSegunFechaMes(int maestro,
+                                                 int fechaMes,
                                                  List<Indicador> indicadores){
         for (Indicador indicador : indicadores) {
             if (indicador.getFecha() == fechaMes) {
                 return indicador;
             }
         }
-        return null;
+        Indicador indicador = new Indicador();
+        indicador.setMaestroIndicador(getMaestroIndicador(maestro));
+        indicador.setIndicador(-1);
+        indicador.setVariable1(0);
+        indicador.setVariable2(0);
+        indicador.setFecha(fechaMes);
+        return indicador;
     }
 
 }
