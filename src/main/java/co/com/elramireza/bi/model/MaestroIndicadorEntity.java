@@ -17,6 +17,7 @@ public class MaestroIndicadorEntity {
     private String var2;
     private int aceptacionArribaAbajo;
     private double aceptacion;
+    private String criterio;
 
     private boolean estaOracleN;
     private boolean estaOracleD;
@@ -83,6 +84,17 @@ public class MaestroIndicadorEntity {
 
     public void setAceptacion(double aceptacion) {
         this.aceptacion = aceptacion;
+    }
+
+
+    @Basic
+    @Column(name = "criterio")
+    public String getCriterio() {
+        return criterio;
+    }
+
+    public void setCriterio(String criterio) {
+        this.criterio = criterio;
     }
 
     @Basic

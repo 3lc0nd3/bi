@@ -38,10 +38,8 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-                <prop key="hibernate.connection.url">jdbc:mysql://localhost/bi</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/bi</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
-                <prop key="hibernate.connection.username">bi</prop>
-                <prop key="hibernate.connection.password">bi</prop>
 
                 <prop key="hibernate.show_sql">false</prop>
                 <!--<prop key="hibernate.show_sql">true</prop>-->
@@ -66,6 +64,7 @@
                 <value>co.com.elramireza.bi.model.IndicadorAgrupadoMes</value>
                 <value>co.com.elramireza.bi.model.TempIndicador</value>
                 <value>co.com.elramireza.bi.model.MaestroIndicadorEntity</value>
+                <value>co.com.elramireza.bi.model.Comentario</value>
             </list>
         </property>
     </bean>
@@ -92,7 +91,7 @@
                 <prop key="hibernate.show_sql">false</prop>
                 <!--<prop key="hibernate.show_sql">true</prop>-->
 
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
 
                 <prop key="hibernate.connection.autocommit">true</prop>
 
@@ -201,6 +200,7 @@
             <dwr:include method="getMaestroIndicador"/>
             <dwr:include method="getIndicador"/>
             <dwr:include method="saveIndicador"/>
+            <dwr:include method="getComentarioPeriodo"/>
 
 
             
@@ -221,6 +221,7 @@
             <dwr:convert class="co.com.elramireza.bi.model.Indicador" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.IndicadorAgrupadoMes" type="bean"/>
             <dwr:convert class="co.com.elramireza.bi.model.MaestroIndicadorEntity" type="bean"/>
+            <dwr:convert class="co.com.elramireza.bi.model.Comentario" type="bean"/>
 
 
             <dwr:convert class="co.com.elramireza.bi.model.Usuario" type="bean">

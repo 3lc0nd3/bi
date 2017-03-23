@@ -866,4 +866,22 @@ public class BiDAO extends HibernateDaoSupport{
         return indicador;
     }
 
+    public Comentario getComentarioPeriodo(Comentario comentario){
+        Object o[] = {
+                comentario.getPeriodo(),
+                comentario.getMaestroIndicador().getId()
+        };
+        List<Comentario> comentarios = getHibernateTemplate().find(
+                "from Comentario where periodo = ? and " +
+                        "maestroIndicador.id = ?",
+                o
+        );
+        if(comentarios.size()>0){
+            return comentarios.get(0);
+        } else {
+            getHibernateTemplate().save(comentario);
+            return getComentarioPeriodo(comentario);
+        }
+    }
+
 }

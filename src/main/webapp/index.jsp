@@ -214,13 +214,15 @@
                     %>
                     Mes elegido: <b><%=mes%></b>
                     <br>
-                    <table align="center"  width="80%" border="1">
+                    <table align="center"  width="90%" border="1">
                         <tr>
                             <th>Id</th>
                             <th>Concepto de Medici&oacute;n </th>
                             <th>Valores </th>
                             <th>Indicador </th>
                             <th>Valor de Aceptaci&oacute;n </th>
+                            <th>Criterio</th>
+                            <th>Comentario</th>
                             <%--<th>Concepto de Aceptaci&oacute;n </th>--%>
                             <%--<th>Observaci&oacute;n </th>--%>
                         </tr>
@@ -309,9 +311,12 @@
                             <td style="text-align: right;" class="<%=esError%>" rowspan="2">
                                 <%=(Math.floor(indicador.getAceptacion()*10000))/100%>%
                             </td>
-                            <%--<td rowspan="2">--%>
-                                <%--????--%>
-                            <%--</td>--%>
+                            <td  rowspan="2">
+                                <%=indicador.getMaestroIndicador().getCriterio()%>
+                            </td>
+                            <td rowspan="2">
+                                ????
+                            </td>
                             <%--<td rowspan="2">--%>
                                 <%--????--%>
                             <%--</td>--%>

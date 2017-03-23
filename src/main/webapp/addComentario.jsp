@@ -35,7 +35,6 @@
                 <div class="col-md-12">
                     <h1>Comentarios de indicador por periodo</h1>
                     <br>
-
                     Seleccione el indicador
                     <select id="idMaestro" class="c-select" onchange="cambiaMaestro()">
                         <option value="0">Seleccione...</option>
@@ -57,29 +56,11 @@
                             }  //  END FOR MESES
                         %>
                     </select>
-                    D&iacute;a:
-                    <select id="elDia" class="c-select" onchange="cambiaMaestro()">
-                        <%
-                            String diaS;
-                            for (int i=1; i<32; i++) {
-                                if(i<10){
-                                    diaS="0"+i;
-                                } else {
-                                    diaS = String.valueOf(i);
-                                }
-                        %>
-                        <option value="<%=diaS%>"><%=diaS%></option>
-                        <%
-                            }  //  END FOR MESES
-                        %>
-                    </select>
+
                     <%--<br>--%>
                     <br>
-                    <span id="var1span"></span>
-                    <input id="variable1">
-                    <br>
-                    <span id="var2span"></span>
-                    <input id="variable2">
+                    <span id="">Comentario</span>
+                    <input id="variable1" size="70">
                     <br>
                     <%--<span id="">Aceptaci&oacute;n % (0-100)</span>
                     <input id="aceptacion">
@@ -138,10 +119,16 @@
     function cambiaMaestro() {
         var mes = dwr.util.getValue("elMes")+dwr.util.getValue("elDia");
 //        alrt(mes);
-        var idIndicador = dwr.util.getValue('idMaestro');
+        var maestro = {
+            id : dwr.util.getValue("");
+        };
+        var comentario = {
+            periodo : null,
+
+        };
         if (mes>0 && idIndicador!=0) {
-            biRemoto.getMaestroIndicador(
-                    idIndicador,
+            biRemoto.getComentarioPeriodo(
+                    comentario,
                     function (data) {
                         dwr.util.setValue("var1span",data.var1 /*+ data.editaN*/);
                         dwr.util.setValue("var2span",data.var2 /*+ data.editaD*/);

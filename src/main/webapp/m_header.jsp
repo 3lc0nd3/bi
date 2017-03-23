@@ -5,8 +5,7 @@
 <%@ page import="co.com.elramireza.bi.model.MaestroIndicadorEntity" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <%
-
-
+    String versionTime = "201703231740";
 %>
 <head>
     <meta charset="utf-8">
@@ -25,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/1.0.0/css/flag-icon.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css?tm=<%=versionTime%>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" rel="stylesheet" type="text/css">
 
 
@@ -242,6 +241,12 @@
                                     <i class="fa fa-dot-circle-o color-success"></i>
                                     <span class="m-l-10">
                                         <a href="addValue.jsp"> Agregar valores</a>
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-dot-circle-o color-success"></i>
+                                    <span class="m-l-10">
+                                        <a href="addComentario.jsp"> Agregar comentarios</a>
                                     </span>
                                 </li>
                             </ul>
