@@ -8,11 +8,12 @@ import java.sql.Timestamp;
  * elramireza@gmail.com
  */
 @Entity
+@Table(name = "comentario")
 public class Comentario {
     private int idComentario;
     private MaestroIndicadorEntity maestroIndicador;
     private int periodo;
-    private int texto;
+    private String texto;
     private Timestamp fechaRegistro;
     private int idUsuario;
 
@@ -48,11 +49,11 @@ public class Comentario {
 
     @Basic
     @Column(name = "texto")
-    public int getTexto() {
+    public String getTexto() {
         return texto;
     }
 
-    public void setTexto(int texto) {
+    public void setTexto(String texto) {
         this.texto = texto;
     }
 

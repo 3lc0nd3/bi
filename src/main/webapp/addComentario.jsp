@@ -91,23 +91,19 @@
 <script type="text/javascript">
 
     function guardar() {
-
-        var maestroIndicadorM = {
+        var mes = dwr.util.getValue("elMes");
+//        alrt(mes);
+        var maestro = {
             id : dwr.util.getValue("idMaestro")
         };
-
-        var indicador = {
-            id : 0,
-            maestroIndicador : maestroIndicadorM,
-            version : 1,
-            fecha : dwr.util.getValue("elMes"),
-            fechaDia : dwr.util.getValue("elMes")+dwr.util.getValue("elDia"),
-            variable1 : dwr.util.getValue("variable1"),
-            variable2 : dwr.util.getValue("variable2")
+        var comentario = {
+            maestroIndicador : maestro,
+            periodo : mes,
+            texto : dwr.util.getValue("variable1")
         };
 
-        biRemoto.saveIndicador(indicador, function (data) {
-            if (data==1) {
+        biRemoto.saveComentarioFromPeriodo(comentario, function (data) {
+            if (data!=null) {
                 alrt("Guardado");
             } else {
                 alrtError("Problemas");
@@ -117,41 +113,26 @@
     }
 
     function cambiaMaestro() {
-        var mes = dwr.util.getValue("elMes")+dwr.util.getValue("elDia");
+        var mes = dwr.util.getValue("elMes");
 //        alrt(mes);
         var maestro = {
-            id : dwr.util.getValue("");
+            id : dwr.util.getValue("idMaestro")
         };
         var comentario = {
-            periodo : null,
-
+            maestroIndicador : maestro,
+            periodo : mes
         };
-        if (mes>0 && idIndicador!=0) {
+        if (mes>0 && maestro.id!=0) {
             biRemoto.getComentarioPeriodo(
                     comentario,
                     function (data) {
-                        dwr.util.setValue("var1span",data.var1 /*+ data.editaN*/);
-                        dwr.util.setValue("var2span",data.var2 /*+ data.editaD*/);
-
-                        if(data.editaN){
-                            $('#variable1').prop('disabled', false);
+                        dwr.util.setValue("variable1",data.texto);
+                        if (data.texto != '') {
+                            alrt(""+data.texto);
                         } else {
-                            $('#variable1').prop('disabled', true);
+                            alrt("No hay comentario")
                         }
-                        if(data.editaD){
-                            $('#variable2').prop('disabled', false);
-                        } else {
-                            $('#variable2').prop('disabled', true);
-                        }
-
-                        if(data.editaN || data.editaD){
-                            $('#bGuardar').prop('disabled', false);
-                        } else {
-                            $('#bGuardar').prop('disabled', true);
-                        }
-
-
-                        biRemoto.getIndicador(mes, idIndicador,
+                        /*biRemoto.getIndicador(mes, idIndicador,
                                 function (data) {
                                     if (data!=null) {
                                         alrt("Ya existe");
@@ -166,8 +147,7 @@
                                     }
                                 }
 
-                        );
-
+                        );*/
                     }
             );
         } else {

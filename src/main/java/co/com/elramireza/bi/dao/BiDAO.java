@@ -29,6 +29,7 @@ import co.com.elramireza.bi.model.*;
 import javax.servlet.ServletContext;
 import java.io.*;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -879,8 +880,25 @@ public class BiDAO extends HibernateDaoSupport{
         if(comentarios.size()>0){
             return comentarios.get(0);
         } else {
+            comentario.setFechaRegistro(new Timestamp(System.currentTimeMillis()));
+            comentario.setTexto("");
             getHibernateTemplate().save(comentario);
             return getComentarioPeriodo(comentario);
+        }
+    }
+
+    public Comentario saveComentarioFromPeriodo(Comentario comentario){
+
+        try {
+            Comentario comentarioOld = getComentarioPeriodo(comentario);
+
+            comentarioOld.setTexto(comentario.getTexto());
+            comentarioOld.setFechaRegistro(new Timestamp(System.currentTimeMillis()));
+            getHibernateTemplate().update(comentarioOld);
+
+            return comentarioOld;
+        } catch (DataAccessException e) {
+            return null;
         }
     }
 

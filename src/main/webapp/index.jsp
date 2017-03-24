@@ -3,6 +3,7 @@
 <%@ page import="co.com.elramireza.bi.model.Indicador" %>
 <%@ page import="co.com.elramireza.bi.model.MaestroIndicadorEntity" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="co.com.elramireza.bi.model.Comentario" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <%
     List<Integer> meses = biManager.getHibernateTemplate().find(
@@ -315,7 +316,17 @@
                                 <%=indicador.getMaestroIndicador().getCriterio()%>
                             </td>
                             <td rowspan="2">
-                                ????
+                                <%
+                                    Comentario comentario = new Comentario();
+                                    comentario.setPeriodo(mes);
+                                    comentario.setMaestroIndicador(indicador.getMaestroIndicador());
+                                    comentario = biManager.getComentarioPeriodo(comentario);
+                                    if(comentario!= null){
+                                %>
+                                <%=comentario.getTexto()%>
+                                <%
+                                    }
+                                %>
                             </td>
                             <%--<td rowspan="2">--%>
                                 <%--????--%>
