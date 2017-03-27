@@ -33,7 +33,7 @@
             </div>--%>
             <div style="margin-bottom: 5px !important;" class="row m-b-40">
                 <div class="col-md-12">
-                    <h1>Comentarios de indicador por periodo</h1>
+                    <h1>Valores de indicador por periodo</h1>
                     <br>
 
                     Seleccione el indicador
