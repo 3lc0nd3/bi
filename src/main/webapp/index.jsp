@@ -301,7 +301,7 @@
                                 %>
                             </td>
                             <td style="text-align: right;" class="<%=esError%>" rowspan="2">
-                                <%=(int)((Math.floor(indicador.getAceptacion()*10000))/100)%>%
+                                <%=((Math.floor(indicador.getAceptacion()*10000))/100)%>%
                             </td>
                             <td  rowspan="2">
                                 <%=indicador.getMaestroIndicador().getCriterio()%>
