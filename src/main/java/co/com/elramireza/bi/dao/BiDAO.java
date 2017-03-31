@@ -851,7 +851,8 @@ public class BiDAO extends HibernateDaoSupport{
                         " from IndicadorAgrupadoMes AS numerador, TempIndicador as denominador " +
                         " where " +
                         " numerador.idIndicador = ? and denominador.idIndicador = ? " +
-                        " and numerador.fecha = denominador.fecha",
+                        " and numerador.fecha = denominador.fecha " +
+                        " order by numerador.fecha ",
                 o
         );
 //        System.out.println("valores.size() = " + valores.size());
