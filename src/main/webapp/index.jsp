@@ -251,13 +251,13 @@
 
                                     //  ACEPTACION
                                     if(indicador.getMaestroIndicador().getAceptacionArribaAbajo()==1){  // Esta por encima
-                                        if(indicador.getIndicador() < indicador.getAceptacion()){
+                                        if(indicador.getIndicador() < indicador.getMaestroIndicador().getAceptacion()){
                                             esError = "filaError";
                                         } else {
                                             esError = "";
                                         }
                                     } else {  //  esta por debajo
-                                        if (indicador.getIndicador() > indicador.getAceptacion()) {
+                                        if (indicador.getIndicador() > indicador.getMaestroIndicador().getAceptacion()) {
                                             esError = "filaError";
                                         } else {
                                             esError = "";
@@ -301,7 +301,7 @@
                                 %>
                             </td>
                             <td style="text-align: right;" class="<%=esError%>" rowspan="2">
-                                <%=((Math.floor(indicador.getAceptacion()*10000))/100)%>%
+                                <%=((Math.round(indicador.getMaestroIndicador().getAceptacion()*10000))/100)%>%
                             </td>
                             <td  rowspan="2">
                                 <%=indicador.getMaestroIndicador().getCriterio()%>
