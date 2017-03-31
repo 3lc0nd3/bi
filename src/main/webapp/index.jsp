@@ -5,7 +5,17 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="co.com.elramireza.bi.model.Comentario" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
+<style>
+    th {
+        text-transform: uppercase !important;
+    }
+</style>
 <%
+
+
+
+    String noAplica = "  ";
+
     List<Integer> meses = biManager.getHibernateTemplate().find(
             "select distinct fecha from Indicador order by fecha desc "
     );
@@ -229,19 +239,6 @@
                             Indicador ultimoIndicador = null;
 
                             for (Indicador indicador: indicadores){
-
-                                /*if(indicador == null){
-                                    int idActual = 1 + ultimoIndicador.getMaestroIndicador().getId();
-                                    System.out.println("idActual = " + idActual);
-                                    indicador = new Indicador();
-                                    indicador.setMaestroIndicador(biManager.getMaestroIndicador(idActual));
-                                    indicador.setIndicador(0);
-                                    indicador.setVariable1(0);
-                                    indicador.setVariable2(0);
-                                    indicador.setFecha(mes);
-
-                                }
-*/
                                 if(indicador != null){
 
                                     i++;
@@ -281,11 +278,11 @@
                                 <%
                                     if(indicador.getIndicador()>=0){
                                 %>
-                                <%=indicador.getVariable1()%>
+                                <%=(int)indicador.getVariable1()%>
                                 <%
                                 } else {
                                 %>
-                                N/A
+                                <%=noAplica%>
                                 <%
                                     }
                                 %>
@@ -298,13 +295,13 @@
                                 <%
                                 } else {
                                 %>
-                                N/A
+                                <%=noAplica%>
                                 <%
                                     }
                                 %>
                             </td>
                             <td style="text-align: right;" class="<%=esError%>" rowspan="2">
-                                <%=(Math.floor(indicador.getAceptacion()*10000))/100%>%
+                                <%=(int)((Math.floor(indicador.getAceptacion()*10000))/100)%>%
                             </td>
                             <td  rowspan="2">
                                 <%=indicador.getMaestroIndicador().getCriterio()%>
@@ -334,11 +331,11 @@
                                 <%
                                     if(indicador.getIndicador()>=0){
                                 %>
-                                <%=indicador.getVariable2()%>
+                                <%=(int)indicador.getVariable2()%>
                                 <%
                                 } else {
                                 %>
-                                N/A
+                                <%=noAplica%>
                                 <%
                                     }
                                 %>
