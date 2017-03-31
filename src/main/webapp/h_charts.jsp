@@ -113,7 +113,7 @@
             break;
         case 25:
             System.out.println("Entro a 25");
-            indicadores = biManager.getUltimosIndicadores(biManager.getIndicadorNDCompleto(25),cuantosUltimos);
+            indicadores = biManager.getUltimosIndicadores(biManager.getValoresIndicador25(),cuantosUltimos);
             break;
         case 26:
             System.out.println("Entro a 26");

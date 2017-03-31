@@ -133,7 +133,7 @@
                 break;
             case 25:
                 System.out.println("Entro a 25");
-                indicadores.add(biManager.getUnIndicadorSegunFechaMes(25,mes, biManager.getIndicadorNDCompleto(25)));
+                indicadores.add(biManager.getUnIndicadorSegunFechaMes(25,mes, biManager.getValoresIndicador25()));
                 break;
             case 26:
                 System.out.println("Entro a 26");

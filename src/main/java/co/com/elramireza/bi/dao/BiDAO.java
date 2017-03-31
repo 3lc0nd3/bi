@@ -3,6 +3,7 @@ package co.com.elramireza.bi.dao;
 import co.com.elramireza.bi.modelOracle.Ind01N;
 import co.com.elramireza.bi.modelOracle.Ind02N;
 import co.com.elramireza.bi.modelOracle.Ind11D;
+import co.com.elramireza.bi.modelOracle.Ind25D;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -715,6 +716,27 @@ public class BiDAO extends HibernateDaoSupport{
             indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
         }
         return indicadores;
+    }
+
+    public List<Indicador> getValoresIndicador25(){
+        final MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(25);
+
+        borroIndicadorOracleTemporal(maestroIndicador.getId());
+
+        List<Ind25D> denominadores = oracleDAO.getHibernateTemplate().find(
+                "from Ind25D "
+        );
+        for (Ind25D aux : denominadores) {
+            TempIndicador tempIndicador = new TempIndicador();
+
+            tempIndicador.setIdIndicador(maestroIndicador.getId());
+            tempIndicador.setFecha(aux.getD25Aaaamm());
+            tempIndicador.setValor(aux.getD25Valor()==null?0:aux.getD25Valor());
+
+            getHibernateTemplate().save(tempIndicador);
+        }
+
+        return getIndicadoresCombinados(maestroIndicador);
     }
 
     /*public List<Indicador> getValoresIndicador25(){
