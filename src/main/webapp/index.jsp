@@ -24,21 +24,15 @@
             mes
     );*/
 
-    List<MaestroIndicadorEntity> maestros = biManager.getHibernateTemplate().find(
-            "from MaestroIndicadorEntity "
-    );
+    List<MaestroIndicadorEntity> maestros = new ArrayList<MaestroIndicadorEntity>();
+    if (mesS != null) {
+        maestros = biManager.getHibernateTemplate().find(
+                "from MaestroIndicadorEntity "
+        );
+    }
 
     for (int i = 0; i < maestros.size(); i++) {
         MaestroIndicadorEntity maestroIndicadorEntity = maestros.get(i);
-
-        /*Indicador indicadore = new Indicador();
-        indicadore.setMaestroIndicador(maestroIndicadorEntity);
-        indicadore.setIndicador(0);
-        indicadore.setVariable1(0);
-        indicadore.setVariable2(0);
-        indicadore.setFecha(mes);
-        indicadores.add(indicadore);
-        if(false)*/
         switch (maestroIndicadorEntity.getId()) {
             case 1 :
                 System.out.println("Entro a 1");
@@ -285,7 +279,7 @@
                             </td>
                             <td style="text-align: right;">
                                 <%
-                                    if(indicador.getIndicador()>0){
+                                    if(indicador.getIndicador()>=0){
                                 %>
                                 <%=indicador.getVariable1()%>
                                 <%
@@ -298,7 +292,7 @@
                             </td>
                             <td style="text-align: right;" class="<%=esError%>" rowspan="2">
                                 <%
-                                    if(indicador.getIndicador()>0){
+                                    if(indicador.getIndicador()>=0){
                                 %>
                                 <%=(Math.floor(indicador.getIndicador()*10000))/100%>%
                                 <%
@@ -338,7 +332,7 @@
                             </td>
                             <td style="text-align: right;">
                                 <%
-                                    if(indicador.getIndicador()>0){
+                                    if(indicador.getIndicador()>=0){
                                 %>
                                 <%=indicador.getVariable2()%>
                                 <%

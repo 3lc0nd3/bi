@@ -167,5 +167,24 @@ public class Uno {
             }
         }
         ImageIO.write(image, fileType, qrFile);*/
+
+        double variable1 = 1;
+        double variable2 = 4131;
+        double indicador;
+
+
+        indicador = variable1 / variable2;
+
+        System.out.println("indicador = " + indicador);
+
+        if (indicador > 0) {
+            System.out.println("SI");
+            indicador =  (Math.floor(indicador*10000))/100;
+            System.out.println("indicador = " + indicador);
+        } else {
+            System.out.println("NO");
+        }
+
+
     }
 }
