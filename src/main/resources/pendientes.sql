@@ -1,3 +1,18 @@
+
+
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 12;
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 14;
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 15;
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 11;
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 16;
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 17;
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 18;
+UPDATE `maestro_indicador` SET `edita_n` = '1' WHERE `maestro_indicador`.`id` = 13;
+
+
+
+### YAAA
+
 ALTER TABLE `maestro_indicador` ADD `criterio` VARCHAR(500) NOT NULL AFTER `aceptacion`;
 
 UPDATE `maestro_indicador` SET `criterio` = 'Como terminados entregados a los usuarios' WHERE `maestro_indicador`.`id` = 1;
