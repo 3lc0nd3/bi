@@ -23,13 +23,7 @@
             "select distinct fecha from Indicador order by fecha desc "
     );
 
-    String mesS = request.getParameter("mes");
-    int mes = 0;
-    if (mesS!=null){
-        mes = Integer.parseInt(mesS);
-    } else {
-        mes = meses.get(0);
-    }
+    int mes = (Integer) session.getAttribute("mes");
 
     List<Indicador> indicadores = (List<Indicador>) session.getAttribute("indicadores");
     if(indicadores == null){

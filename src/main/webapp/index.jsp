@@ -218,6 +218,13 @@
                         if (mes!=0){
                     %>
                     Mes elegido: <b><%=mes%></b>
+                    <%
+                            if(mesS != null){
+                    %>
+                    <a target="_blank" href="print.jsp"  class="btn btn-primary">Imprimir</a>
+                    <%
+                            }
+                    %>
                     <br>
                     <table align="center"  width="90%" border="1">
                         <tr>
@@ -242,6 +249,7 @@
                              * guardo en session los ultimos indicadores
                              */
                             session.setAttribute("indicadores", indicadores);
+                            session.setAttribute("mes", mes);
 
                             for (Indicador indicador: indicadores){
                                 if(indicador != null){
