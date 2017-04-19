@@ -238,6 +238,11 @@
 
                             Indicador ultimoIndicador = null;
 
+                            /**
+                             * guardo en session los ultimos indicadores
+                             */
+                            session.setAttribute("indicadores", indicadores);
+
                             for (Indicador indicador: indicadores){
                                 if(indicador != null){
 
