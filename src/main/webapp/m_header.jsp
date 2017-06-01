@@ -3,9 +3,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="co.com.elramireza.bi.model.Indicador" %>
 <%@ page import="co.com.elramireza.bi.model.MaestroIndicadorEntity" %>
+<%@ page import="co.com.elramireza.bi.model.Usuario" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
 <%
     String versionTime = "201703231740";
+
+Usuario usuario = (Usuario) session.getAttribute("usuario");
+if(usuario==null){
+usuario= new Usuario();
+}
+
 %>
 <head>
     <meta charset="utf-8">
@@ -185,7 +192,7 @@
                 <%--<a class="dropdown-item animated fadeIn" href="email-inbox.html"> <i class="zmdi zmdi-email"></i> <span class="label label-pill label-danger label-xs pull-right">New</span> <span class="dropdown-text">Inbox</span> </a>--%>
                 <%--<a class="dropdown-item animated fadeIn" href="pages-profile.html"> <i class="zmdi zmdi-settings-square"></i> <span class="dropdown-text">Profile</span> </a>--%>
                 <%--<a class="dropdown-item animated fadeIn" href="pages-lock-screen.html"> <i class="zmdi zmdi-alarm"></i> <span class="dropdown-text">Lock screen</span> </a>--%>
-                <a class="dropdown-item animated fadeIn" href="http://localhost:9002/pages-logout.html"> <i class="zmdi zmdi-power"></i> <span class="dropdown-text">Logout</span> </a>
+                <a class="dropdown-item animated fadeIn" href="logout.jsp"> <i class="zmdi zmdi-power"></i> <span class="dropdown-text">Logout</span> </a>
             </div>
         </li>
     </ul>
@@ -213,8 +220,8 @@
                         <div class="profile-toggle">
                             <button data-click="toggle-profile" type="button" class="btn btn-white btn-outline no-border"> <i class="pull-right fa fa-caret-down icon-toggle-profile"></i> </button>
                         </div>
-                        <div class="profile-title">Lucas smith</div>
-                        <div class="profile-subtitle">lucas.smith@gmail.com</div>
+                        <div class="profile-title"><%=usuario.getNombre()%></div>
+                        <div class="profile-subtitle"><%=usuario.getEmail()%></div>
                     </div>
                     <div class="sidebar-nav">
                         <div class="sidebar-section account-links">
@@ -230,7 +237,7 @@
                                     <a class="sideline"> <i class="zmdi zmdi-favorite-outline md-icon pull-left"></i> <span class="title">Favorites</span> </a>
                                 </li>
                                 --%><li>
-                                    <a class="sideline"> <i class="zmdi zmdi-sign-in md-icon pull-left"></i> <span class="title">Logout</span> </a>
+                                    <a href="logout.jsp" class="sideline"> <i class="zmdi zmdi-sign-in md-icon pull-left"></i> <span class="title">Logout</span> </a>
                                 </li>
                             </ul>
                         </div>

@@ -1,18 +1,43 @@
-<jsp:include page="m_header.jsp" />
 <%@ page import="java.util.List" %>
 <%@ page import="co.com.elramireza.bi.model.Indicador" %>
 <%@ page import="co.com.elramireza.bi.model.MaestroIndicadorEntity" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="co.com.elramireza.bi.model.Comentario" %>
+<%@ page import="co.com.elramireza.bi.model.Usuario" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
+
+<%
+
+    String email    = request.getParameter("email");
+    String password = request.getParameter("password");
+    System.out.println("email = " + email);
+
+    if(email != null){
+        Usuario usuario = biManager.getUsuarioFromLP(email, password);
+        if(usuario!=null){
+            session.setAttribute("usuario", usuario);
+        }
+
+    }
+
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+    System.out.println("usuario = " + usuario);
+
+    if(usuario == null){
+        System.out.println("sssiiii");
+        response.sendRedirect("h_login.jsp");
+//        return;
+    }
+%>
+<jsp:include page="m_header.jsp" />
+
 <style>
     th {
         text-transform: uppercase !important;
     }
 </style>
 <%
-
-
 
     String noAplica = "  ";
 
@@ -314,7 +339,8 @@
                                 %>
                             </td>
                             <td style="text-align: right;" class="<%=esError%>" rowspan="2">
-                                <%=((Math.round(indicador.getMaestroIndicador().getAceptacion()*10000))/100)%>%
+                                <%--<%=((Math.round(indicador.getMaestroIndicador().getAceptacion()*10000))/100)%>%--%>
+                                <%=((Math.round(indicador.getMaestroIndicador().getAceptacion()*10000))/100.0)%>%
                             </td>
                             <td  rowspan="2">
                                 <%=indicador.getMaestroIndicador().getCriterio()%>

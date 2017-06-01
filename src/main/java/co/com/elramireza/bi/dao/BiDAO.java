@@ -59,6 +59,24 @@ public class BiDAO extends HibernateDaoSupport{
         return (Usuario) getHibernateTemplate().get(Usuario.class, id);
     }
 
+    public Usuario getUsuarioFromLP(String email, String password){
+        Object o[] = {
+                email,
+                password
+        };
+
+        List<Usuario> usuarios = getHibernateTemplate().find(
+                "from Usuario where email = ? and " +
+                        " password = ?",
+                o
+        );
+        if(usuarios.size()>0){
+            return usuarios.get(0);
+        } else {
+            return null;
+        }
+    }
+
     public List<List<ValorExcel>> subeArchivoExcel(byte[] archivoExcel){
         try {
             WebContext wctx = WebContextFactory.get();

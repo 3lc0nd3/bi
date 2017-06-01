@@ -19,12 +19,14 @@
 
         var password = $('.login-page #password');
         password.floatingLabels({
-            errorBlock: 'Please enter a valid password',
+            errorBlock: 'Por favor enter a valid password',
             minLength: 6
         });
 
 		$('.login-page .btn-login').click(function(e) {
 			e.preventDefault();
+			// alert("h");
+            $("#form1").submit();
 			return false;
 		});
     });

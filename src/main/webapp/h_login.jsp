@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Marino</title>
+    <title>Indicadores</title>
     <meta name="description" content="Marino, Admin theme, Dashboard theme, AngularJS Theme">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
@@ -26,11 +26,11 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="login-page text-center animated fadeIn delay-2000">
-                <h1> Account login </h1>
-                <h4> Please enter your email address and password to login </h4>
+                <h1> ingreso </h1>
+                <h4> Por favor ingrese su email y su contrase&ntilde;a </h4>
                 <div class="row">
                     <div class="col-xs-offset-2 col-xs-8 col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4">
-                        <form name="form" novalidate class="form">
+                        <form id="form1" name="form" novalidate class="form" action="index.jsp" method="post">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group floating-labels">
@@ -52,17 +52,17 @@
                             <div class="row buttons">
                                 <div class="col-xs-12 col-md-6">
                                     <input type="submit" class="btn-login btn btn-lg btn-info btn-block m-b-20" value="Login"> </div>
-                                <div class="col-xs-12 col-md-6"> <a href="pages-register.html" class="btn btn-lg btn-danger btn-block m-b-20">Register</a> </div>
+                                <%--<div class="col-xs-12 col-md-6"> <a href="pages-register.html" class="btn btn-lg btn-danger btn-block m-b-20">Register</a> </div>--%>
                             </div>
                         </form>
                     </div>
                 </div>
                 <p class="social-buttons">
-                    <button type="button" class="btn btn-solid btn-circle btn-facebook btn-lg"><i class="fa fa-facebook"></i> </button>
-                    <button type="button" class="btn btn-solid btn-circle btn-twitter btn-lg"><i class="fa fa-twitter"></i> </button>
-                    <button type="button" class="btn btn-solid btn-circle btn-google btn-lg"><i class="fa fa-google"></i> </button>
+                    <%--<button type="button" class="btn btn-solid btn-circle btn-facebook btn-lg"><i class="fa fa-facebook"></i> </button>--%>
+                    <%--<button type="button" class="btn btn-solid btn-circle btn-twitter btn-lg"><i class="fa fa-twitter"></i> </button>--%>
+                    <%--<button type="button" class="btn btn-solid btn-circle btn-google btn-lg"><i class="fa fa-google"></i> </button>--%>
                 </p>
-                <p class="copyright text-sm">&copy; Copyright 2016</p>
+                <p class="copyright text-sm">&copy; Copyright</p>
             </div>
         </div>
     </div>

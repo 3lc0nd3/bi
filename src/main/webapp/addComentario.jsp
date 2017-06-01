@@ -1,10 +1,15 @@
-<jsp:include page="m_header.jsp" />
 <%@ page import="java.util.List" %>
 <%@ page import="co.com.elramireza.bi.model.Indicador" %>
 <%@ page import="co.com.elramireza.bi.model.MaestroIndicadorEntity" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="co.com.elramireza.bi.model.Usuario" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if(usuario!=null && usuario.getTipo() == 2){
+%>
+<jsp:include page="m_header.jsp" />
 <%
 
     int yearIni = 2015;
@@ -155,6 +160,20 @@
 
     }
 </script>
+<%
+}  //  END IF ES TIPO == 2
+else if(usuario!= null){
+%>
+<jsp:include page="m_header.jsp" />
+
+<h1>No tienes permisos para usar este servicio.</h1>
+<%
+    } else  {
+        session.invalidate();
+        response.sendRedirect("h_login.jsp");
+        return;
+    }
+%>
 
 </body>
 
