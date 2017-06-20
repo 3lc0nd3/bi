@@ -216,6 +216,94 @@ public class BiDAO extends HibernateDaoSupport{
 
 
 
+    public List<Indicador> getValoresIndicador2(){
+        final MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(2);
+
+        borroIndicadorOracleTemporal(maestroIndicador.getId());
+
+        List<Ind02N> numeradores = oracleDAO.getHibernateTemplate().find(
+                "from Ind02N "
+        );
+        for (Ind02N ind02N : numeradores) {
+            TempIndicador tempIndicador = new TempIndicador();
+
+            tempIndicador.setIdIndicador(maestroIndicador.getId());
+            tempIndicador.setFecha(ind02N.getN02Aaaamm());
+            tempIndicador.setValor(ind02N.getN02Valor());
+
+            getHibernateTemplate().save(tempIndicador);
+        }
+
+//        return getIndicadoresCombinados(maestroIndicador);
+        Object o[] = {
+                maestroIndicador.getId(),
+                maestroIndicador.getId()
+        };
+        List<Object[]> valores = getHibernateTemplate().find(
+                "select numerador.fecha, numerador.valor, denominador.d " +
+                        " from IndicadorAgrupadoMes AS denominador, TempIndicador as numerador " +
+                        " where " +
+                        " numerador.idIndicador = ? and denominador.idIndicador = ? " +
+                        " and numerador.fecha = denominador.fecha " +
+                        " order by denominador.fecha ",
+                o
+        );
+//        System.out.println("valores.size() = " + valores.size());
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+
+        return indicadores;
+    }
+
+    public List<Indicador> getValoresIndicador3(){
+        /**
+         *  denominador del 12 es numerador del 3
+         * pero el denominador del 12 es el numerador del Numerador del 04 en MySQL
+         *
+         * el "denominador" del 3 es de MySQL
+         */
+        final MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(3);
+
+        borroIndicadorOracleTemporal(maestroIndicador.getId());
+
+        List<IndicadorAgrupadoMes> numeradores = getHibernateTemplate().find(
+                "from IndicadorAgrupadoMes where idIndicador = 4"
+        );
+        for (IndicadorAgrupadoMes agrupadoMes : numeradores) {
+            TempIndicador tempIndicador = new TempIndicador();
+
+            tempIndicador.setIdIndicador(maestroIndicador.getId());  //  pongo el 3
+            tempIndicador.setFecha(agrupadoMes.getFecha());
+            tempIndicador.setValor(agrupadoMes.getN());  //  NUMERADOR DEL 4
+
+            getHibernateTemplate().save(tempIndicador);
+        }
+
+//        return getIndicadoresCombinados(maestroIndicador);
+        Object o[] = {
+                maestroIndicador.getId(),
+                maestroIndicador.getId()
+        };
+        List<Object[]> valores = getHibernateTemplate().find(
+                "select numerador.fecha, numerador.valor, denominador.d " +
+                        " from IndicadorAgrupadoMes AS denominador, TempIndicador as numerador " +
+                        " where " +
+                        " numerador.idIndicador = ? and denominador.idIndicador = ? " +
+                        " and numerador.fecha = denominador.fecha " +
+                        " order by denominador.fecha ",
+                o
+        );
+//        System.out.println("valores.size() = " + valores.size());
+        List<Indicador> indicadores = new ArrayList<Indicador>();
+        for (Object[] objects: valores) {
+            indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
+        }
+
+        return indicadores;
+    }
+
     public List<Indicador> getValoresIndicador4(){
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(4);
 

@@ -241,6 +241,9 @@ usuario= new Usuario();
                                 </li>
                             </ul>
                         </div>
+                        <%
+                            if(usuario.getTipo()==2){
+                        %>
                         <div class="sidebar-labels section-title">
                             <h5>Configuraci&oacute;n</h5>
                             <ul class="list-unstyled">
@@ -258,6 +261,9 @@ usuario= new Usuario();
                                 </li>
                             </ul>
                         </div>
+                        <%
+                            }  //  END IF ADMIN
+                        %>
                         <div class="sidebar-labels section-title">
                             <h5>Indicadores</h5>
                             <ul class="list-unstyled">
