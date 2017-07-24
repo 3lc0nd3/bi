@@ -176,6 +176,34 @@
         </property>
     </bean>
 
+
+    <!-- .................................................. -->
+    <!-- Definicion de los JOB DETAILS  __ -_ .....         -->
+    <!-- .................................................. -->
+
+
+    <bean id="syncCustomersJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="oracleDAO"/>
+        <property name="targetMethod" value="procedimiento24Horas"/>
+    </bean>
+
+    <!-- .................................................. -->
+    <!-- Definicion de los CRON TRIGGERS __ -_ ....         -->
+    <!-- .................................................. -->
+
+    <bean id="syncCustomersCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="syncCustomersJobDetail"/>
+        <!-- Se lanza la tarea cada 5 seg -->
+        <property name="cronExpression" value="0 */30 * * * ?"/>
+    </bean>
+
+    <!-- .................................................. -->
+    <!-- Definicion de los SchedulerFactoryBean  __ -_ ..   -->
+    <!-- .................................................. -->
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers" ref="syncCustomersCronTrigger"/>
+    </bean>
     
     <!-- .................................................. -->
     <!-- Definicion de los DAO a utilizar por la aplicacion -->
