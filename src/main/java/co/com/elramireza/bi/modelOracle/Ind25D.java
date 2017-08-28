@@ -3,7 +3,7 @@ package co.com.elramireza.bi.modelOracle;
 import javax.persistence.*;
 
 /**
- * Created by usuariox on 6/02/17.
+ * Created by usuariox on 6/02/17. cm
  * elramireza@gmail.com
  */
 @Entity
