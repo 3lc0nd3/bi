@@ -852,7 +852,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "select numerador.n25Aaaamm, numerador.n25Valor, denominador.d25Valor " +
                         " from Ind25N AS numerador, Ind25D as denominador " +
                         " where numerador.n25Aaaamm = denominador.d25Aaaamm " +
-                        " order by numerador.n25Aaaamm desc "
+                        " order by numerador.n25Aaaamm "
         );
         List<Indicador> indicadores = new ArrayList<Indicador>();
         for (Object[] objects: valores) {
