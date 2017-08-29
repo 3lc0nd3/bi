@@ -851,7 +851,8 @@ public class BiDAO extends HibernateDaoSupport{
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n25Aaaamm, numerador.n25Valor, denominador.d25Valor " +
                         " from Ind25N AS numerador, Ind25D as denominador " +
-                        " where numerador.n25Aaaamm = denominador.d25Aaaamm"
+                        " where numerador.n25Aaaamm = denominador.d25Aaaamm " +
+                        " order by numerador.n25Aaaamm desc "
         );
         List<Indicador> indicadores = new ArrayList<Indicador>();
         for (Object[] objects: valores) {
