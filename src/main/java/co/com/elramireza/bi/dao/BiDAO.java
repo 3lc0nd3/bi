@@ -188,7 +188,8 @@ public class BiDAO extends HibernateDaoSupport{
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select i01n.n01Aaaamm, i01n.n01Valor, i01d.d01Valor " +
                         " from Ind01N AS i01n, Ind01D as i01d " +
-                        " where i01n.n01Aaaamm = i01d.d01Aaaamm"
+                        " where i01n.n01Aaaamm = i01d.d01Aaaamm " +
+                        " order by i01n.n01Aaaamm "
         );
         List<Indicador> indicadores = new ArrayList<Indicador>();
         Indicador indicador;
@@ -612,7 +613,8 @@ public class BiDAO extends HibernateDaoSupport{
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n19Aaaamm, numerador.n19Valor, denominador.d19Valor " +
                         " from Ind19N AS numerador, Ind19D as denominador " +
-                        " where numerador.n19Aaaamm = denominador.d19Aaaamm"
+                        " where numerador.n19Aaaamm = denominador.d19Aaaamm " +
+                        " order by numerador.n19Aaaamm "
         );
         List<Indicador> indicadores = new ArrayList<Indicador>();
         for (Object[] objects: valores) {
@@ -626,7 +628,8 @@ public class BiDAO extends HibernateDaoSupport{
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n20Aaaamm, numerador.n20Valor, denominador.d20Valor " +
                         " from Ind20N AS numerador, Ind20D as denominador " +
-                        " where numerador.n20Aaaamm = denominador.d20Aaaamm"
+                        " where numerador.n20Aaaamm = denominador.d20Aaaamm " +
+                        " order by numerador.n20Aaaamm "
         );
         List<Indicador> indicadores = new ArrayList<Indicador>();
         for (Object[] objects: valores) {
@@ -641,7 +644,8 @@ public class BiDAO extends HibernateDaoSupport{
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n21Aaaamm, numerador.n21Valor, denominador.d21Valor " +
                         " from Ind21N AS numerador, Ind21D as denominador " +
-                        " where numerador.n21Aaaamm = denominador.d21Aaaamm"
+                        " where numerador.n21Aaaamm = denominador.d21Aaaamm " +
+                        " order by numerador.n21Aaaamm "
         );
         List<Indicador> indicadores = new ArrayList<Indicador>();
         for (Object[] objects: valores) {
@@ -815,7 +819,8 @@ public class BiDAO extends HibernateDaoSupport{
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n24Aaaamm, numerador.n24Valor, denominador.d24Valor " +
                         " from Ind24N AS numerador, Ind24D as denominador " +
-                        " where numerador.n24Aaaamm = denominador.d24Aaaamm"
+                        " where numerador.n24Aaaamm = denominador.d24Aaaamm " +
+                        " order by numerador.n24Aaaamm "
         );
         List<Indicador> indicadores = new ArrayList<Indicador>();
         for (Object[] objects: valores) {
