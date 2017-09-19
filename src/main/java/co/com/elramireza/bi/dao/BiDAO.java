@@ -200,7 +200,7 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }
 
-    /*public List<Indicador> getValoresIndicador2(){
+    public List<Indicador> getValoresIndicador2(){
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(2);
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n02Aaaamm, numerador.n02Valor, denominador.d02Valor " +
@@ -213,11 +213,11 @@ public class BiDAO extends HibernateDaoSupport{
             indicadores.add(poblateIndicadorFromObjetcs(objects, maestroIndicador));
         }
         return indicadores;
-    }*/
+    }
 
 
 
-    public List<Indicador> getValoresIndicador2(){
+    /*public List<Indicador> getValoresIndicador2_Mixto(){
         final MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(2);
 
         borroIndicadorOracleTemporal(maestroIndicador.getId());
@@ -256,7 +256,7 @@ public class BiDAO extends HibernateDaoSupport{
         }
 
         return indicadores;
-    }
+    }*/
 
     public List<Indicador> getValoresIndicador3(){
         /**
