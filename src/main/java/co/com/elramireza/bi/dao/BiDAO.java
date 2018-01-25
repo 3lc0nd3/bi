@@ -200,7 +200,8 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }
 
-    public List<Indicador> getValoresIndicador2(){
+
+    public List<Indicador> getValoresIndicador2_oldYANO(){
         MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(2);
         List<Object[]> valores = oracleDAO.getHibernateTemplate().find(
                 "select numerador.n02Aaaamm, numerador.n02Valor, denominador.d02Valor " +
@@ -259,7 +260,7 @@ public class BiDAO extends HibernateDaoSupport{
         return indicadores;
     }*/
 
-    public List<Indicador> getValoresIndicador3(){
+    public List<Indicador> getValoresIndicador3_oldYano(){
         /**
          *  denominador del 12 es numerador del 3
          * pero el denominador del 12 es el numerador del Numerador del 04 en MySQL
@@ -316,6 +317,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -437,6 +439,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -469,6 +472,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -499,6 +503,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -529,6 +534,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -559,6 +565,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -589,6 +596,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -706,6 +714,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
@@ -795,6 +804,7 @@ public class BiDAO extends HibernateDaoSupport{
                 "FROM `indicador_agrupado_mes` as numerador\n" +
                 "INNER JOIN indicador_agrupado_mes as denominador on numerador.fecha = denominador.fecha\n" +
                 "WHERE numerador.`id_indicador`=:idIndNumerador AND denominador.id_indicador=:idIndDenominador  \n" +
+                "and numerador.version = '1' and denominador.version = '1'\n" +
                 "ORDER BY `numerador`.`fecha` ASC ";
         SQLQuery query = hbSession.createSQLQuery(sql);
 
