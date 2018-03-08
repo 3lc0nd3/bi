@@ -76,7 +76,7 @@
                 break;
             case 2:
                 System.out.println("Entro a 2");
-                indicadores.add(biManager.getUnIndicadorSegunFechaMes(2,mes, biManager.getIndicadorNDCompleto(2)));
+                indicadores.add(biManager.getUnIndicadorSegunFechaMes(2,mes, biManager.getValoresIndicador2()));
                 break;
             case 3:
                 System.out.println("Entro a 3");

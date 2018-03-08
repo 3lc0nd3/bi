@@ -219,7 +219,7 @@ public class BiDAO extends HibernateDaoSupport{
 
 
 
-    /*public List<Indicador> getValoresIndicador2_Mixto(){
+    public List<Indicador> getValoresIndicador2(){
         final MaestroIndicadorEntity maestroIndicador = getMaestroIndicador(2);
 
         borroIndicadorOracleTemporal(maestroIndicador.getId());
@@ -258,7 +258,7 @@ public class BiDAO extends HibernateDaoSupport{
         }
 
         return indicadores;
-    }*/
+    }
 
     public List<Indicador> getValoresIndicador3_oldYano(){
         /**
@@ -690,7 +690,7 @@ public class BiDAO extends HibernateDaoSupport{
 
             new19.setMaestroIndicador(maestroIndicador19);
             new19.setFecha(indicador19.getFecha());
-            new19.setVersion("2");
+            new19.setVersion("1");
             new19.setFechaDia(0);
             new19.setVariable1(indicador19.getVariable1());
             new19.setVariable2(indicador19.getVariable2());
@@ -786,7 +786,7 @@ public class BiDAO extends HibernateDaoSupport{
 
             new19.setMaestroIndicador(maestroIndicador19);
             new19.setFecha(indicador19.getFecha());
-            new19.setVersion("2");
+            new19.setVersion("1");
             new19.setFechaDia(0);
             new19.setVariable1(indicador19.getVariable1());
             new19.setVariable2(indicador19.getVariable2());
