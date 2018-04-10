@@ -5,7 +5,6 @@
 <%@ page import="co.com.elramireza.bi.model.Comentario" %>
 <%@ page import="co.com.elramireza.bi.model.Usuario" %>
 <jsp:useBean id="biManager" class="co.com.elramireza.bi.dao.BiDAO" scope="application"/>
-
 <%
 
     String email    = request.getParameter("email");
